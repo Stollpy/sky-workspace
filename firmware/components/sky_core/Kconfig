@@ -1,0 +1,42 @@
+menu "Sky Core"
+
+    config SKY_CORE_EVENT_MAX_SUBSCRIBERS
+        int "Maximum event subscribers"
+        default 32
+        range 8 128
+        help
+            Maximum number of concurrent event subscriptions across
+            all components. Each subscription costs ~16 bytes of RAM.
+
+    config SKY_CORE_EVENT_QUEUE_SIZE
+        int "Event queue size (async mode)"
+        default 16
+        range 4 64
+        help
+            Size of the FreeRTOS queue for asynchronous event dispatch.
+
+    config SKY_CORE_REGISTRY_MAX_SERVICES
+        int "Maximum registered services"
+        default 16
+        range 4 32
+        help
+            Maximum number of services that can be registered in the
+            service registry simultaneously.
+
+    config SKY_CORE_CRASH_MAX_ENTRIES
+        int "Maximum crash handler entries"
+        default 16
+        range 4 32
+        help
+            Maximum number of components that can register crash
+            safety handlers.
+
+    config SKY_CORE_CRASH_DEFAULT_WDT_TIMEOUT_S
+        int "Default watchdog timeout (seconds)"
+        default 10
+        range 5 60
+        help
+            Default task watchdog timeout for components that do not
+            specify their own timeout.
+
+endmenu

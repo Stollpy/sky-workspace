@@ -1,0 +1,18 @@
+{
+  "name": "stollper-pcb",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsci dev",
+    "build": "tsci build",
+    "export": "tsci export"
+  },
+  "dependencies": {
+    "tscircuit": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.4.0"
+  }
+}

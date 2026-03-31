@@ -1,0 +1,30 @@
+menu "Sky Wi-Fi"
+
+    config SKY_WIFI_DEFAULT_SSID
+        string "Default Wi-Fi SSID (development only)"
+        default ""
+        help
+            Leave empty to use NVS-stored credentials or provisioning.
+
+    config SKY_WIFI_DEFAULT_PASSWORD
+        string "Default Wi-Fi password (development only)"
+        default ""
+
+    config SKY_WIFI_HOSTNAME
+        string "Default mDNS hostname"
+        default "sky-device"
+
+    config SKY_WIFI_MAX_RETRY
+        int "Maximum reconnection attempts (0 = infinite)"
+        default 0
+        range 0 255
+
+    config SKY_WIFI_RETRY_INTERVAL_MS
+        int "Base reconnection interval (ms)"
+        default 5000
+        range 1000 60000
+        help
+            Interval doubles on each failure (exponential backoff),
+            capped at 5x this value.
+
+endmenu

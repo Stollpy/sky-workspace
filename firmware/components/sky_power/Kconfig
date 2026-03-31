@@ -1,0 +1,45 @@
+menu "Sky Power"
+
+    config SKY_POWER_BATTERY_THRESHOLD_LOW
+        int "Battery low threshold (%)"
+        default 20
+        range 5 50
+
+    config SKY_POWER_BATTERY_THRESHOLD_CRITICAL
+        int "Battery critical threshold (%)"
+        default 5
+        range 1 20
+
+    config SKY_POWER_SAMPLE_INTERVAL_MS
+        int "Battery sample interval (ms)"
+        default 60000
+        range 1000 600000
+        help
+            How often to read the battery ADC. Default 60s.
+
+    config SKY_POWER_SAMPLE_AVERAGE
+        int "Number of ADC samples to average"
+        default 16
+        range 1 64
+
+    config SKY_POWER_ADC_PIN
+        int "Battery ADC pin (GPIO)"
+        default 34
+        range 32 39
+        help
+            Must be an ADC1 pin (32-39). GPIO 34-39 are input-only.
+
+    config SKY_POWER_IDLE_TIMEOUT_MS
+        int "Idle timeout before sleep (ms)"
+        default 30000
+        range 0 600000
+        help
+            Time after last wakelock release before entering idle mode.
+            0 = disabled.
+
+    config SKY_POWER_IDLE_MODE
+        int "Idle power mode (0=active, 1=modem, 2=light, 3=deep)"
+        default 1
+        range 0 3
+
+endmenu

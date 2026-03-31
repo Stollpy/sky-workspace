@@ -1,0 +1,33 @@
+menu "Sky Matter"
+
+    config SKY_MATTER_ENABLED
+        bool "Enable Matter protocol support"
+        default n
+        help
+            Requires the esp-matter SDK.
+            Leave disabled until the SDK is integrated into the build.
+
+    config SKY_MATTER_DEVICE_NAME
+        string "Default device name"
+        default "Sky Device"
+
+    config SKY_MATTER_VENDOR_ID
+        hex "Matter Vendor ID"
+        default 0xFFF1
+        help
+            CSA Vendor ID. Use 0xFFF1 for development.
+            Production requires a registered Vendor ID from the CSA.
+
+    config SKY_MATTER_PRODUCT_ID
+        hex "Matter Product ID"
+        default 0x0001
+
+    config SKY_MATTER_SETUP_PASSCODE
+        int "Default setup passcode"
+        default 20202021
+
+    config SKY_MATTER_DISCRIMINATOR
+        hex "Default BLE discriminator (12-bit)"
+        default 0xF00
+
+endmenu

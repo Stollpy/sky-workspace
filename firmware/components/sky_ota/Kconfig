@@ -1,0 +1,31 @@
+menu "Sky OTA"
+
+    config SKY_OTA_UPDATE_URL
+        string "Default OTA update URL"
+        default "https://update.sky.stollpy.com/firmware"
+        help
+            HTTPS endpoint serving firmware binaries.
+            Resolved via local DNS in the home network.
+
+    config SKY_OTA_SELF_TEST_TIMEOUT_MS
+        int "Self-test timeout after OTA (ms)"
+        default 30000
+        range 5000 120000
+
+    config SKY_OTA_CHECK_INTERVAL_MS
+        int "Periodic check interval (ms, 0 = manual only)"
+        default 0
+        range 0 86400000
+
+    config SKY_OTA_AUTO_UPDATE
+        bool "Automatically apply available updates"
+        default n
+
+    config SKY_OTA_SKIP_SERVER_CERT
+        bool "Skip TLS server certificate verification (dev only)"
+        default y
+        help
+            Disable for production. Enable during development when
+            using self-signed certificates on the local OTA server.
+
+endmenu

@@ -1,0 +1,51 @@
+menu "Sky Stepper"
+
+    config SKY_STEPPER_MAX_MOTORS
+        int "Maximum number of stepper motors"
+        default 4
+        range 1 8
+        help
+            Maximum number of stepper motors that can be registered
+            simultaneously on a single ESP32.
+
+    config SKY_STEPPER_MAX_HOOKS
+        int "Maximum hooks per motor"
+        default 8
+        range 4 16
+
+    config SKY_STEPPER_DEFAULT_TASK_PRIORITY
+        int "Default FreeRTOS task priority for motor tasks"
+        default 5
+        range 1 24
+
+    config SKY_STEPPER_DEFAULT_STACK_SIZE
+        int "Default stack size for motor tasks (bytes)"
+        default 4096
+        range 2048 8192
+
+    config SKY_STEPPER_CMD_QUEUE_SIZE
+        int "Command queue depth per motor"
+        default 8
+        range 4 16
+
+    config SKY_STEPPER_POSITION_EVENT_INTERVAL
+        int "Steps between position events"
+        default 100
+        range 10 1000
+        help
+            Publish a position event every N steps during movement.
+
+    config SKY_STEPPER_CALIBRATION_TIMEOUT_S
+        int "Calibration safety timeout (seconds)"
+        default 120
+        range 30 600
+        help
+            Auto-stop calibration if the client does not respond
+            within this timeout.
+
+    config SKY_STEPPER_MAX_PATTERNS
+        int "Maximum patterns per motor"
+        default 8
+        range 1 16
+
+endmenu
