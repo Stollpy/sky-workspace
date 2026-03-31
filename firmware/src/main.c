@@ -6,7 +6,9 @@
 #include "sky_ota.h"
 #include "sky_power.h"
 #include "sky_sleep.h"
+#include "sky_http_server.h"
 #include "luxia_cmd.h"
+#include "luxia_http.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "driver/gpio.h"
@@ -161,14 +163,22 @@ void app_main(void)
     sleep_cfg.wake_on_high = true;
     ESP_ERROR_CHECK(sky_sleep_init(&sleep_cfg));
 
-    /* 8. Command module (custom API: calibration, patterns, diagnostics) */
+    /* 8. HTTP Server */
+    size_t route_count = 0;
+    const sky_http_route_t *routes = luxia_http_get_routes(&route_count);
+    sky_http_server_config_t http_cfg = SKY_HTTP_SERVER_CONFIG_DEFAULT();
+    http_cfg.routes      = routes;
+    http_cfg.route_count = route_count;
+    ESP_ERROR_CHECK(sky_http_server_init(&http_cfg));
+
+    /* 9. Command module (custom API: calibration, patterns, diagnostics) */
     luxia_cmd_init(s_motor);
 
-    /* 9. Event bridges */
+    /* 10. Event bridges */
     sky_event_subscribe(SKY_EVENT_STEPPER_POSITION,
                         on_position_event, NULL);
 
-    /* 10. Start everything */
+    /* 11. Start everything */
     sky_core_start();
 
     ESP_LOGI(TAG, "Luxia v%s ready (battery: %d%%, wake: %s, heap: %lu)",

@@ -1,0 +1,29 @@
+menu "Sky HTTP Server"
+
+    config SKY_HTTP_SERVER_ENABLED
+        bool "Enable HTTP Server"
+        default y
+        help
+            Active le serveur HTTP Sky.
+            Désactiver pour économiser de la flash/RAM
+            si le firmware n'a pas besoin de servir du HTTP.
+
+    config SKY_HTTP_SERVER_PORT
+        int "HTTP port"
+        default 80
+        range 1 65535
+        depends on SKY_HTTP_SERVER_ENABLED
+
+    config SKY_HTTP_SERVER_MAX_URI_HANDLERS
+        int "Maximum URI handlers"
+        default 16
+        range 4 64
+        depends on SKY_HTTP_SERVER_ENABLED
+
+    config SKY_HTTP_SERVER_STACK_SIZE
+        int "Server task stack size (bytes)"
+        default 4096
+        range 2048 16384
+        depends on SKY_HTTP_SERVER_ENABLED
+
+endmenu

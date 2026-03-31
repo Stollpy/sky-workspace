@@ -2,3 +2,6 @@
 .vscode
 .DS_Store
 .cache
+
+sdkconfig.defaults
+sdkconfig.luxia

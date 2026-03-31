@@ -7,6 +7,8 @@
 #include "sky_core.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -53,6 +55,11 @@ esp_err_t luxia_cmd_calibrate_mark_closed(int32_t *out_position,
 {
     esp_err_t err = sky_stepper_calibrate_mark_closed(s_motor);
     if (err != ESP_OK) return err;
+
+    for (int i = 0; i < 50; i++) {
+        vTaskDelay(pdMS_TO_TICKS(10));
+        if (sky_stepper_is_calibrated(s_motor)) break;
+    }
 
     sky_stepper_calibration_t cal;
     err = sky_stepper_get_calibration(s_motor, &cal);
