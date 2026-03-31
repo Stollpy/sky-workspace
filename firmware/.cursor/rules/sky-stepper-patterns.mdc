@@ -1,0 +1,36 @@
+---
+description: Patterns for editing sky_stepper component files
+globs: components/sky_stepper/**
+alwaysApply: false
+---
+
+# sky_stepper Editing Rules
+
+## Architecture Layers
+1. **GPIO HAL** (`sky_stepper_gpio.c`) — 4-pin output, optional inversion
+2. **Step Engine** (`sky_stepper_engine.c`) — phase tables (wave/full/half), direction logic
+3. **Motor Registry** (`sky_stepper.c`) — multi-motor management, FreeRTOS tasks, commands
+
+## Motor Task Pattern
+- One FreeRTOS task per motor (`stepper_motor_task`)
+- Commands sent via `xQueueSend` (never call movement functions from ISR)
+- Command types: `CMD_MOVE`, `CMD_MOVE_TO`, `CMD_SET_HEIGHT`, `CMD_STOP`, `CMD_EMERGENCY_STOP`, `CMD_CALIBRATE_*`
+
+## Hooks
+- `run_hooks(type, event)` — if any hook sets `event->cancel = true`, operation aborts
+- Currently only `BEFORE_MOVE` and `AFTER_MOVE` are invoked in code
+- Hooks execute in the motor task context
+
+## Calibration State Machine
+- Runs inside `exec_calibrate()` with internal command loop
+- `MARK_OPEN`/`MARK_CLOSED` commands consumed inside calibrate loop (not main switch)
+- Timeout: `CONFIG_SKY_STEPPER_CALIBRATION_TIMEOUT_S` (default 120s)
+- Persists to NVS keys: `cop` (open), `ccl` (closed), `cts` (total), `pos` (position)
+
+## NVS Namespaces
+- Per-motor: `"stp0"`, `"stp1"`, etc. (index-based, ≤15 chars)
+- Pattern data: `"pdat"` (blob), `"pcnt"` (count)
+
+## Default Motor: 28BYJ-48
+- Half-step mode, 4096 steps/rev, 2000µs step delay
+- Ramp disabled by default; enable via `sky_stepper_set_ramp()`

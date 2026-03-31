@@ -1,0 +1,29 @@
+---
+description: Patterns for editing sky_wifi, sky_matter, sky_ota components
+globs: components/sky_wifi/**,components/sky_matter/**,components/sky_ota/**
+alwaysApply: false
+---
+
+# Network Components Rules
+
+## sky_wifi
+- STA mode only; provisioning (BLE/SoftAP) declared but not implemented
+- Credentials: NVS namespace `"sky_wifi"`, keys `"ssid"` and `"pass"`
+- Auto-reconnect: exponential backoff `base * 2^min(retry, 5)` (max 32× base)
+- `esp_netif_init()` and `esp_event_loop_create_default()` with graceful error handling
+- mDNS deferred (external component in ESP-IDF v5.x)
+
+## sky_matter
+- **Skeleton only** — `#error` if `CONFIG_SKY_MATTER_ENABLED` is set
+- All API functions return `ESP_OK` or `ESP_ERR_NOT_SUPPORTED`
+- Window Covering: callbacks `on_move_to_percent`, `on_open`, `on_close`, `on_stop`
+- Dev defaults: vendor 0xFFF1, product 0x0001, passcode 20202021
+- Future: integrate `esp-matter` SDK, create real endpoints
+
+## sky_ota
+- HTTPS download via `esp_https_ota`; task priority 5, stack 8192
+- Self-test: runs synchronously in `svc_start`, timer-based timeout for rollback
+- `esp_ota_mark_app_valid_cancel_rollback()` on pass; `..._invalid_rollback_and_reboot()` on fail
+- Progress: `SKY_EVENT_OTA_PROGRESS` per percent change; log every 10%
+- After success: `sky_core_stop()` → 2s delay → `esp_restart()`
+- `sky_ota_check()` is a stub (always returns `update_available = false`)

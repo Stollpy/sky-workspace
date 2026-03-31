@@ -1,0 +1,36 @@
+---
+description: Patterns for editing sky_core component files
+globs: components/sky_core/**
+alwaysApply: false
+---
+
+# sky_core Editing Rules
+
+## Event Bus
+- `sky_event_bus_config_t`: `max_subscribers=32`, `queue_size=16`, `async=true`
+- Handlers called **outside** mutex to prevent deadlocks
+- Async mode copies payload via `malloc`; keep event data small (<64 bytes)
+- Never block in an event handler
+
+## Registry
+- `sky_service_id_t` = `const char *` (e.g. `"sky_stepper"`, `"sky_wifi"`)
+- Lifecycle: `init(config)` → `start()` → `stop()` → `deinit()`
+- `start_all` calls init then start in registration order; `stop_all` reverses
+
+## Config (NVS)
+- `sky_config_init()` handles `nvs_flash_init` + erase-on-corrupt
+- Namespace max 15 chars; key max 15 chars (NVS constraint)
+
+## Crash Safety
+- `sky_crash_register(service_id, &crash_config)` per component
+- `safe_state_handler` runs in ISR context — no malloc, no logging, no FreeRTOS calls
+- `sky_error_report` with `SKY_SEVERITY_FATAL` auto-triggers crash handler
+
+## Events Range
+| Range | Owner |
+|-------|-------|
+| 0x0000–0x00FF | Core |
+| 0x0100–0x01FF | Stepper |
+| 0x0200–0x027F | Network/Matter |
+| 0x0280–0x02FF | OTA |
+| 0x0300–0x03FF | Power |

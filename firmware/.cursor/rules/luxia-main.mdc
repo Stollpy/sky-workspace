@@ -1,0 +1,36 @@
+---
+description: Patterns for editing Luxia product firmware (src/ directory)
+globs: src/**
+alwaysApply: false
+---
+
+# Luxia Firmware Rules
+
+## Startup Order (critical — do not reorder)
+1. `sky_core_init()` — framework bootstrap
+2. `sky_power_init()` — battery status available early
+3. `sky_wifi_init()` — network
+4. `sky_stepper_register()` — motor + battery guard hook
+5. `sky_matter_init()` + `sky_matter_add_window_covering()` — protocol
+6. `sky_ota_init()` — updates
+7. `sky_sleep_init()` — idle timer last
+8. `luxia_cmd_init()` — command module
+9. Event subscriptions
+10. `sky_core_start()` — starts all registered services
+
+## Bridges (inter-component wiring in main.c)
+- **Stepper → Matter**: `on_position_event` subscribes to `SKY_EVENT_STEPPER_POSITION`, calls `sky_matter_wc_update_position/status`
+- **Matter → Stepper**: `wc_callbacks` (open/close/move_to/stop) call `sky_stepper_set_height/stop`
+- **Power → Stepper**: `battery_motor_guard` hook on `BEFORE_MOVE` blocks motor when critical
+
+## GPIO Pinout (Luxia PCB)
+| Function | GPIO | Notes |
+|----------|------|-------|
+| Stepper IN1–IN4 | 17, 16, 4, 0 | GPIO 0 = boot mode, monitor |
+| Battery ADC | 34 | ADC1, input-only |
+| Wake button | 35 | input-only, pull-up |
+
+## luxia_cmd Module
+- Product-specific command handlers bridging custom API to sky_* components
+- Command IDs: 0x01 calibration, 0x10 presets, 0x20 sequences, 0x40 diagnostics
+- `luxia_cmd_init(motor_handle)` stores the motor reference for all handlers

@@ -1,0 +1,41 @@
+---
+description: Sky framework global coding conventions for ESP-IDF C firmware
+alwaysApply: true
+---
+
+# Sky Framework Conventions
+
+## Language & Style
+- C11, ESP-IDF v5.x, PlatformIO build system
+- All public symbols prefixed `sky_` (framework) or `luxia_` (product)
+- Error return: always `esp_err_t`; use `ESP_ERROR_CHECK()` for fatal init
+- Logging: `ESP_LOG{I,W,E,D}(TAG, ...)` with `static const char *TAG = "sky_<component>"`
+
+## Component Structure
+```
+components/sky_<name>/
+├── CMakeLists.txt     # idf_component_register(SRC_DIRS "src" INCLUDE_DIRS "include" REQUIRES sky_core)
+├── Kconfig            # menu "Sky <Name>" ... endmenu
+├── include/sky_<name>.h
+└── src/sky_<name>.c
+```
+
+## Init Pattern
+Every component follows: `init(config) → start() → stop() → deinit()`
+- `init` is idempotent (returns `ESP_ERR_INVALID_STATE` if already initialized)
+- Register with `sky_registry` for lifecycle management
+- Default config via `SKY_<NAME>_CONFIG_DEFAULT()` macro
+
+## Events
+- Publish via `sky_event_publish(SKY_EVENT_*, &data, sizeof(data))`
+- Subscribe via `sky_event_subscribe(SKY_EVENT_*, handler, ctx)`
+- Event IDs reserved by range: core 0x00xx, stepper 0x01xx, network 0x02xx, OTA 0x028x, power 0x03xx
+
+## NVS
+- Use `sky_config_set_*/get_*` with short namespace strings (≤15 chars)
+- Never write NVS in hot loops; persist on state change only
+
+## Thread Safety
+- Protect shared state with FreeRTOS mutex
+- Use queues for inter-task commands (stepper, OTA)
+- Never call `sky_event_publish` while holding a component mutex

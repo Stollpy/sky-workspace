@@ -1,0 +1,28 @@
+---
+description: Patterns for editing sky_power component files
+globs: components/sky_power/**
+alwaysApply: false
+---
+
+# sky_power Editing Rules
+
+## Battery Module (sky_power.c)
+- ADC1 oneshot with calibration (curve fitting or line fitting, fallback to raw)
+- LiPo discharge curve: 21-point lookup table with linear interpolation
+- Threshold events on **rising edge** only (low→critical, ok→low, low→ok)
+- Charging detection: `voltage > prev_voltage + 0.05V`
+- `block_motor_on_critical` and `auto_sleep_on_critical` are config fields but **not implemented in sky_power.c** — handled externally (e.g. hook in main.c)
+
+## Sleep Module (sky_sleep.c)
+- Modes: `ACTIVE` (WIFI_PS_NONE), `MODEM_SLEEP` (PS_MIN_MODEM), `LIGHT_SLEEP` (PS_MAX_MODEM), `DEEP_SLEEP`
+- Wakelocks: 8 slots max, index-based ID (`sky_wakelock_t = uint32_t`)
+- Acquiring wakelock → stops idle timer, forces ACTIVE mode
+- Releasing last wakelock → starts idle timer
+- Deep sleep refused if wakelocks > 0
+- Before deep sleep: `sky_core_stop()` + 500ms delay (if save_state_before_sleep)
+- `RTC_DATA_ATTR s_wake_count` survives deep sleep, incremented at each `sky_sleep_init`
+
+## GPIO Constraints
+- Battery ADC: GPIO 32–39 only (ADC1); GPIO 34–39 are input-only (recommended)
+- Wake button: GPIO supporting RTC (ext0 wakeup)
+- ADC2 unavailable when Wi-Fi is active
