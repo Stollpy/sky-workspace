@@ -1,0 +1,117 @@
+[
+  {
+    "source": "watch_main_enclosure",
+    "target": "watch_back_cover",
+    "label": "Secured by enclosure_closure_screws"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "display_retaining_frame",
+    "label": "Secures display assembly"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "power_button",
+    "label": "Houses actuator"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "boot_button",
+    "label": "Houses actuator"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "pcb_standoffs",
+    "label": "Mounting points"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "waterproof_gasket_usb",
+    "label": "Seals USB-C cutout"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "waterproof_gasket_buttons",
+    "label": "Seals button cutouts"
+  },
+  {
+    "source": "watch_main_enclosure",
+    "target": "watch_strap",
+    "label": "Attaches to"
+  },
+  {
+    "source": "watch_back_cover",
+    "target": "hr_sensor_lens_insert",
+    "label": "Holds lens"
+  },
+  {
+    "source": "pcb_standoffs",
+    "target": "pcb_screws",
+    "label": "Secured by"
+  },
+  {
+    "source": "display_retaining_frame",
+    "target": "display_adhesive_tape",
+    "label": "Secured to enclosure with"
+  },
+  {
+    "source": "watch_strap",
+    "target": "lte_fpc_antenna_conn",
+    "label": "Houses antenna"
+  },
+  {
+    "source": "watch_strap",
+    "target": "gps_fpc_antenna_conn",
+    "label": "Houses antenna"
+  },
+  {
+    "source": "lipo_battery",
+    "target": "watch_main_enclosure",
+    "label": "Stacked below/above PCB in"
+  },
+  {
+    "source": "st7789v3_display",
+    "target": "display_retaining_frame",
+    "label": "Mounted in"
+  },
+  {
+    "source": "usb_c_conn",
+    "target": "watch_main_enclosure",
+    "label": "Fits into cutout"
+  },
+  {
+    "source": "max30102_sensor",
+    "target": "hr_sensor_lens_insert",
+    "label": "Aligned with"
+  },
+  {
+    "source": "spm1423hm4h_mic",
+    "target": "watch_main_enclosure",
+    "label": "Aligned with grille"
+  },
+  {
+    "source": "small_speaker",
+    "target": "watch_main_enclosure",
+    "label": "Aligned with grille"
+  },
+  {
+    "source": "lte_fpc_antenna_conn",
+    "target": "lte_fpc_antenna_conn",
+    "label": "Connects to"
+  },
+  {
+    "source": "gps_fpc_antenna_conn",
+    "target": "gps_fpc_antenna_conn",
+    "label": "Connects to"
+  },
+  {
+    "source": "power_button",
+    "target": "power_button",
+    "label": "Actuated by"
+  },
+  {
+    "source": "boot_button",
+    "target": "boot_button",
+    "label": "Actuated by"
+  }
+]

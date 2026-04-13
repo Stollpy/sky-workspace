@@ -1,0 +1,421 @@
+[
+  {
+    "source": "usb_c_conn",
+    "target": "axp2101_pmic",
+    "type": "power",
+    "voltage": "5V"
+  },
+  {
+    "source": "lipo_battery",
+    "target": "axp2101_pmic",
+    "type": "power",
+    "voltage": "3.7V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "esp32_mcu",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "bmi270_imu",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "max30102_sensor",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "pcf8563_rtc",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "spm1423hm4h_mic",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "max98357a_amp",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "st7789v3_display",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "ft6336u_touch",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "st7789v3_display",
+    "type": "power",
+    "voltage": "3.3V (Backlight)"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "sim7080g_lte",
+    "type": "data",
+    "label": "Enable",
+    "protocol": "GPIO",
+    "sourcePin": "ALDO4_OUT",
+    "targetPin": "PWRKEY"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "mia_m10q_gps",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "axp2101_pmic",
+    "target": "drv2605l_haptic",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "lipo_battery",
+    "target": "lte_ldo",
+    "type": "power",
+    "voltage": "3.7V"
+  },
+  {
+    "source": "lte_ldo",
+    "target": "sim7080g_lte",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "lte_ldo",
+    "target": "bulk_capacitor_lte",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "coin_cell_battery",
+    "target": "pcf8563_rtc",
+    "type": "power",
+    "voltage": "3V"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "axp2101_pmic",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SDA",
+    "targetPin": "I2C_SDA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "axp2101_pmic",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SCL",
+    "targetPin": "I2C_SCL"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "pcf8563_rtc",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SDA",
+    "targetPin": "SDA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "pcf8563_rtc",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SCL",
+    "targetPin": "SCL"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "bmi270_imu",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SDA",
+    "targetPin": "SDA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "bmi270_imu",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SCL",
+    "targetPin": "SCL"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "max30102_sensor",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SDA",
+    "targetPin": "SDA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "max30102_sensor",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SCL",
+    "targetPin": "SCL"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "drv2605l_haptic",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SDA",
+    "targetPin": "SDA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "drv2605l_haptic",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C0_SCL",
+    "targetPin": "SCL"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "ft6336u_touch",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C1_SDA",
+    "targetPin": "SDA1"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "ft6336u_touch",
+    "type": "data",
+    "protocol": "I2C",
+    "sourcePin": "I2C1_SCL",
+    "targetPin": "SCL1"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "st7789v3_display",
+    "type": "data",
+    "protocol": "SPI",
+    "sourcePin": "SPI_CS",
+    "targetPin": "CS"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "st7789v3_display",
+    "type": "data",
+    "protocol": "SPI",
+    "sourcePin": "SPI_MOSI",
+    "targetPin": "MOSI"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "st7789v3_display",
+    "type": "data",
+    "protocol": "SPI",
+    "sourcePin": "SPI_SCK",
+    "targetPin": "SCK"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "st7789v3_display",
+    "type": "data",
+    "protocol": "GPIO",
+    "sourcePin": "GPIO14",
+    "targetPin": "DC"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "st7789v3_display",
+    "type": "data",
+    "protocol": "GPIO",
+    "sourcePin": "GPIO15",
+    "targetPin": "RST"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "sim7080g_lte",
+    "type": "data",
+    "protocol": "UART",
+    "sourcePin": "UART0_TX",
+    "targetPin": "UART_RX"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "sim7080g_lte",
+    "type": "data",
+    "protocol": "UART",
+    "sourcePin": "UART0_RX",
+    "targetPin": "UART_TX"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "mia_m10q_gps",
+    "type": "data",
+    "protocol": "UART",
+    "sourcePin": "UART1_TX",
+    "targetPin": "UART_RX"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "mia_m10q_gps",
+    "type": "data",
+    "protocol": "UART",
+    "sourcePin": "UART1_RX",
+    "targetPin": "UART_TX"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "spm1423hm4h_mic",
+    "type": "data",
+    "protocol": "PDM",
+    "sourcePin": "PDM_CLK",
+    "targetPin": "CLK"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "spm1423hm4h_mic",
+    "type": "data",
+    "protocol": "PDM",
+    "sourcePin": "PDM_DATA",
+    "targetPin": "DATA"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "max98357a_amp",
+    "type": "data",
+    "protocol": "I2S",
+    "sourcePin": "I2S_BCLK",
+    "targetPin": "BCLK"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "max98357a_amp",
+    "type": "data",
+    "protocol": "I2S",
+    "sourcePin": "I2S_WCLK",
+    "targetPin": "WCLK"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "max98357a_amp",
+    "type": "data",
+    "protocol": "I2S",
+    "sourcePin": "I2S_DOUT",
+    "targetPin": "DOUT"
+  },
+  {
+    "source": "max98357a_amp",
+    "target": "small_speaker",
+    "type": "data",
+    "label": "Audio Out",
+    "sourcePin": "L_OUT",
+    "targetPin": "POS"
+  },
+  {
+    "source": "max98357a_amp",
+    "target": "small_speaker",
+    "type": "data",
+    "label": "Audio Out",
+    "sourcePin": "R_OUT",
+    "targetPin": "NEG"
+  },
+  {
+    "source": "drv2605l_haptic",
+    "target": "lra_motor",
+    "type": "data",
+    "label": "Haptic Drive",
+    "sourcePin": "IN_OUT1",
+    "targetPin": "POS"
+  },
+  {
+    "source": "drv2605l_haptic",
+    "target": "lra_motor",
+    "type": "data",
+    "label": "Haptic Drive",
+    "sourcePin": "IN_OUT2",
+    "targetPin": "NEG"
+  },
+  {
+    "source": "sim7080g_lte",
+    "target": "lte_fpc_antenna_conn",
+    "type": "data",
+    "protocol": "RF",
+    "sourcePin": "ANT_LTE",
+    "targetPin": "RF"
+  },
+  {
+    "source": "mia_m10q_gps",
+    "target": "gps_fpc_antenna_conn",
+    "type": "data",
+    "protocol": "RF",
+    "sourcePin": "ANT_IN",
+    "targetPin": "RF"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "power_button",
+    "type": "data",
+    "protocol": "GPIO",
+    "sourcePin": "GPIO0",
+    "targetPin": "GPIO"
+  },
+  {
+    "source": "esp32_mcu",
+    "target": "boot_button",
+    "type": "data",
+    "protocol": "GPIO",
+    "sourcePin": "GPIO9",
+    "targetPin": "GPIO"
+  },
+  {
+    "source": "sim7080g_lte",
+    "target": "esim_mff2",
+    "type": "data",
+    "protocol": "SIM",
+    "sourcePin": "SIM_DATA",
+    "targetPin": "IO"
+  },
+  {
+    "source": "sim7080g_lte",
+    "target": "esim_mff2",
+    "type": "data",
+    "protocol": "SIM",
+    "sourcePin": "SIM_CLK",
+    "targetPin": "CLK"
+  },
+  {
+    "source": "sim7080g_lte",
+    "target": "esim_mff2",
+    "type": "data",
+    "protocol": "SIM",
+    "sourcePin": "SIM_RST",
+    "targetPin": "RST"
+  },
+  {
+    "source": "i2c0_pullups",
+    "target": "esp32_mcu",
+    "type": "power",
+    "voltage": "3.3V"
+  },
+  {
+    "source": "i2c1_pullups",
+    "target": "esp32_mcu",
+    "type": "power",
+    "voltage": "3.3V"
+  }
+]

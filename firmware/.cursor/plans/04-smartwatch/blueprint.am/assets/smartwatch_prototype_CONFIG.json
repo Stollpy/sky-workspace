@@ -1,0 +1,2047 @@
+{
+  "projectName": "Smartwatch Prototype",
+  "nodes": [
+    {
+      "id": "esp32_mcu",
+      "name": "Main MCU",
+      "productName": "ESP32-PICO-V3-02",
+      "type": "mcu",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 5,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=ESP32-PICO-V3-02",
+      "description": "SiP with 8MB flash + 2MB PSRAM, WiFi + BLE + Bluetooth Classic.",
+      "dimensions": "7x7x1mm",
+      "pins": [
+        "GPIO0",
+        "GPIO1",
+        "GPIO2",
+        "GPIO3",
+        "GPIO4",
+        "GPIO5",
+        "GPIO12",
+        "GPIO13",
+        "GPIO14",
+        "GPIO15",
+        "GPIO16",
+        "GPIO17",
+        "GPIO18",
+        "GPIO19",
+        "GPIO21",
+        "GPIO22",
+        "GPIO23",
+        "GPIO25",
+        "GPIO26",
+        "GPIO27",
+        "GPIO32",
+        "GPIO33",
+        "GPIO34",
+        "GPIO35",
+        "GPIO36",
+        "GPIO39",
+        "VCC",
+        "GND",
+        "EN",
+        "SPI_CS",
+        "SPI_MOSI",
+        "SPI_SCK",
+        "I2C0_SDA",
+        "I2C0_SCL",
+        "I2C1_SDA",
+        "I2C1_SCL",
+        "UART0_TX",
+        "UART0_RX",
+        "UART1_TX",
+        "UART1_RX",
+        "PDM_CLK",
+        "PDM_DATA",
+        "I2S_BCLK",
+        "I2S_WCLK",
+        "I2S_DOUT"
+      ],
+      "partId": "f02719d9-2f04-44d7-bb56-e1042327fa97",
+      "imageUrl": "https://imgs.search.brave.com/yDffpBosZxb8TAwBxFp1zhRzkoRNT4FMhD5eJKPBu_c/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jb21w/b25lbnRzMTAxLmNv/bS9zaXRlcy9kZWZh/dWx0L2ZpbGVzL2Nv/bXBvbmVudF9waW4v/ZXNwMzItcGljby1k/NC1waW5vdXQuanBn",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "GPIO,I2C_SDA,I2C_SCL,UART_TX,UART_RX,PWM_OUT,ADC_IN,3V3,GND"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=ESP32-PICO-V3-02&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 7,
+        "height": 1,
+        "depth": 7
+      },
+      "position3d": {
+        "x": 0,
+        "y": 6.8,
+        "z": 0
+      }
+    },
+    {
+      "id": "axp2101_pmic",
+      "name": "Power Management IC",
+      "productName": "AXP2101",
+      "type": "power",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 3.5,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=AXP2101",
+      "description": "Manages all voltage rails, LiPo charging, and USB-C power input.",
+      "dimensions": "4x4x0.6mm",
+      "pins": [
+        "VBUS_IN",
+        "BAT_IN",
+        "GND",
+        "DC1_OUT",
+        "ALDO2_OUT",
+        "ALDO3_OUT",
+        "ALDO4_OUT",
+        "BLDO1_OUT",
+        "BLDO2_OUT",
+        "I2C_SDA",
+        "I2C_SCL",
+        "IRQ"
+      ],
+      "partId": "7199011c-d73f-46a8-aee8-1ca7e40b57dd",
+      "amazonUrl": "https://www.amazon.com/s?k=AXP2101&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/hLXYJ46fZwFs_C22xizshzZ0jW9205Dlq1Vfk3DcLm8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zLmFs/aWNkbi5jb20vQHNj/MDQva2YvSGIyYmUw/MGEzNGJjMzRjNDNh/OGU2ZWFlOGFkYTJm/ZTliQS5qcGdfNzIw/eDcyMHE1MC5qcGc",
+      "boundingBox": {
+        "width": 4,
+        "height": 0.6,
+        "depth": 4
+      },
+      "position3d": {
+        "x": 3,
+        "y": 6.78,
+        "z": 3
+      }
+    },
+    {
+      "id": "pcf8563_rtc",
+      "name": "Real-time Clock",
+      "productName": "PCF8563",
+      "type": "sensor",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.75,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=PCF8563",
+      "description": "Low power RTC with alarm function and backup battery input.",
+      "dimensions": "5x4x1.5mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL",
+        "VBAT",
+        "CLKOUT"
+      ],
+      "partId": "fd2b9943-fd2c-4e24-8d06-2cceb02c9a20",
+      "amazonUrl": "https://www.amazon.com/s?k=PCF8563&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/Ag76GcXxX5I6MspJzG5nnAHEIInsBQHEOfFO_AVfg5I/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZXNwYm9hcmRzLmRl/di9pbWcvVFA1bDQt/WFQzVC0xMDAwLnBu/Zw",
+      "boundingBox": {
+        "width": 5,
+        "height": 1.5,
+        "depth": 4
+      },
+      "position3d": {
+        "x": -3,
+        "y": 6.9,
+        "z": 3
+      }
+    },
+    {
+      "id": "lipo_battery",
+      "name": "LiPo Battery",
+      "productName": "Generic 3.7V LiPo 300-400mAh",
+      "type": "power",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 4,
+      "purchaseUrl": "https://www.amazon.com/s?k=300mAh+lipo+battery",
+      "description": "Single-cell 3.7V LiPo rechargeable battery.",
+      "dimensions": "30x20x4mm",
+      "pins": [
+        "POS",
+        "NEG"
+      ],
+      "partId": "22268362-66a2-4ea6-891a-036d3072e9e3",
+      "imageUrl": "https://imgs.search.brave.com/JSLrYw963TTKZefkq7S2_aiZDOxXTCk490oRiBktGg8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tYWtl/cmJhemFyLmluL2Nk/bi9zaG9wL2ZpbGVz/L01vZGVsXzUwMzAz/NS5qcGc_dj0xNzM3/NDQ2MjczJndpZHRo/PTEwODA",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "+,-"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Generic%203.7V%20LiPo%20300-400mAh&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 30,
+        "height": 4,
+        "depth": 20
+      },
+      "position3d": {
+        "x": 0,
+        "y": 2,
+        "z": 0
+      }
+    },
+    {
+      "id": "usb_c_conn",
+      "name": "USB-C Connector",
+      "productName": "USB-C Receptacle",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.5,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=usb-c+receptacle",
+      "description": "For charging and programming ESP32.",
+      "dimensions": "8x6x3mm",
+      "pins": [
+        "VBUS",
+        "GND",
+        "D+",
+        "D-",
+        "CC1",
+        "CC2"
+      ],
+      "partId": "a54726bc-43c3-4405-8f87-0779b568ad02",
+      "imageUrl": "https://imgs.search.brave.com/dLkRJFVfT_hKw9UOkjG4yG9tuNd-06cnNsLIojgSNXU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9lbmVy/bGl0ZXMuY29tL19u/ZXh0L2ltYWdlP3Vy/bD1odHRwczovL25v/a3h3cnJ4dnZucGx4/ZWh4dnVoLnN1cGFi/YXNlLmNvL3N0b3Jh/Z2UvdjEvb2JqZWN0/L3B1YmxpYy9wcm9k/dWN0LWFzc2V0cy9k/dWFsLXVzYi10eXBl/LWMtdHlwZS1hLWNo/YXJnZXItMy02YS13/aXRoLTE1YS10YW1w/ZXItcmVzaXN0YW50/LXJlY2VwdGFjbGVz/L2ltYWdlcy82MTUw/MS1UUjJVU0IzLTFB/MUMtV193aGl0ZV8x/LnBuZyZ3PTM4NDAm/cT03NQ",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VBUS,GND,CC1,CC2,D+,D-"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=USB-C%20Receptacle&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "max30102_sensor",
+      "name": "Heart Rate & SpO2 Sensor",
+      "productName": "MAX30102",
+      "type": "sensor",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 6,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=MAX30102",
+      "description": "Integrated pulse oximetry and heart-rate sensor module.",
+      "dimensions": "3x3x1.5mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL",
+        "INT"
+      ],
+      "partId": "a233841c-2008-4691-bcb4-a681b0d62b8f",
+      "amazonUrl": "https://www.amazon.com/s?k=MAX30102&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/vyEyQLZAlRf8TI2_WH0smJWvSAJiit8y45MoNXXYm0M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9sYXN0/bWludXRlZW5naW5l/ZXJzLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvYXJkdWluby9N/QVgzMDEwMi1Nb2R1/bGUtSGFyZHdhcmUt/T3ZlcnZpZXctSUMt/YW5kLUxFRHMuanBn",
+      "boundingBox": {
+        "width": 3,
+        "height": 1.5,
+        "depth": 3
+      },
+      "position3d": {
+        "x": 0,
+        "y": 6.9,
+        "z": 15.5
+      }
+    },
+    {
+      "id": "bmi270_imu",
+      "name": "6-axis IMU",
+      "productName": "BMI270",
+      "type": "sensor",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 2.5,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=BMI270",
+      "description": "Accelerometer and gyroscope for motion tracking.",
+      "dimensions": "2.5x2.5x0.8mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL",
+        "CS",
+        "INT1",
+        "INT2"
+      ],
+      "partId": "2fc2ec94-63d0-4834-bb36-812defe75f43",
+      "imageUrl": "https://imgs.search.brave.com/mA-rHqAjMVNn91qtYmFBLPujhfRGSkrRsjMt2EieYZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/Ym9zY2gtc2Vuc29y/dGVjLmNvbS9tZWRp/YS9ib3NjaHNlbnNv/cnRlYy9wcm9kdWN0/cy9tb3Rpb25fc2Vu/c29ycy9pbXVzL2Jt/aTI3MC90ZWFzZXJf/ZG9rdW1lbnRlL2Jz/dC1ibWkyNzAtYW4w/MDUtMDMuanBn",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VDD,GND,SCL,SDA,INT1"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=BMI270&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 2.5,
+        "height": 0.8,
+        "depth": 2.5
+      },
+      "position3d": {
+        "x": 3,
+        "y": 6.82,
+        "z": -3
+      }
+    },
+    {
+      "id": "drv2605l_haptic",
+      "name": "Haptic Driver",
+      "productName": "DRV2605L",
+      "type": "actuator",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 2.2,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=DRV2605L",
+      "description": "Haptic feedback driver for LRA motors.",
+      "dimensions": "2x2x0.6mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL",
+        "IN_OUT1",
+        "IN_OUT2",
+        "EN"
+      ],
+      "partId": "974aafd7-acef-436b-9233-ec19c8b9bda7",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "P_IN,N_IN"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=DRV2605L&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/zxv2PxNiJeC6RrvjHZ8HiZOUaYVyhJjsTz77CtOFdNs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/a2l3aS1lbGVjdHJv/bmljcy5jb20vaW1h/Z2UvY2FjaGUvY2F0/YWxvZy9wcm9kdWN0/LzgzaGFiZmFrL0RS/VjI2MDVMX0hhcHRp/Y19CWlpaXzRfb2Zf/NC00MDB4MzAwdy5K/UEc",
+      "boundingBox": {
+        "width": 2,
+        "height": 0.6,
+        "depth": 2
+      },
+      "position3d": {
+        "x": -3,
+        "y": 6.78,
+        "z": -3
+      }
+    },
+    {
+      "id": "lra_motor",
+      "name": "LRA Vibration Motor",
+      "productName": "LRA Vibration Motor",
+      "type": "actuator",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 1.5,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=LRA+vibration+motor",
+      "description": "Linear Resonant Actuator for haptic feedback.",
+      "dimensions": "8x3.5x2mm",
+      "pins": [
+        "POS",
+        "NEG"
+      ],
+      "partId": "d43bfe15-d2d7-4e77-bd33-e7d226ba2552",
+      "amazonUrl": "https://www.amazon.com/s?k=LRA%20Vibration%20Motor&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/u7aPxQpxmGkL8MZQfrOD05k3Rq5tccIVxXuxPgdlQgU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZi1p/bWFnZXMudXMtZWFz/dC0xLnByb2QuYm9s/dGRucy5uZXQvdjEv/c3RhdGljLzE1NzE1/OTU4NDMwMDEvMzdm/MTQwMmEtYWI1Yy00/MWM0LTlmNGMtNDc3/NmE2ZjI4NGFmLzNk/Mjk5YWVjLWQ5NmYt/NDViYS1iZjc4LTlm/NjBkYzE5YjMwYi8x/MjgweDcyMC9tYXRj/aC9pbWFnZS5qcGc",
+      "boundingBox": {
+        "width": 8,
+        "height": 2,
+        "depth": 3.5
+      },
+      "position3d": {
+        "x": -10,
+        "y": 6.8,
+        "z": -14
+      }
+    },
+    {
+      "id": "st7789v3_display",
+      "name": "1.54 inch IPS LCD",
+      "productName": "ST7789V3 (panel dependant)",
+      "type": "display",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 8,
+      "purchaseUrl": "https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20231127050019&SearchText=1.54+IPS+ST7789V3",
+      "description": "1.54\" IPS LCD with 240x240 resolution, ST7789V3 driver.",
+      "dimensions": "30x28x2mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "CS",
+        "MOSI",
+        "SCK",
+        "DC",
+        "RST",
+        "BL_LED"
+      ],
+      "partId": "b953426f-b971-4f08-85bf-e917856e66d5",
+      "amazonUrl": "https://www.amazon.com/s?k=ST7789V3%20(panel%20dependant)&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/Ba5riHTFkLwuNV_RqWgZVKZQR6h_in0t5RcRfFIt8Uk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9lbGVj/dHJvbmlrei5jb20v/aW1hZ2VzL2xjZC1k/aXNwbGF5LW1vZHVs/ZS1zdDc3ODl2Mi1y/ZXZpZXdfMS5qcGc",
+      "boundingBox": {
+        "width": 30,
+        "height": 2,
+        "depth": 28
+      },
+      "position3d": {
+        "x": 0,
+        "y": 9.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "ft6336u_touch",
+      "name": "Capacitive Touch Controller",
+      "productName": "FT6336U",
+      "type": "sensor",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 1.8,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=FT6336U",
+      "description": "Capacitive touch overlay controller for the display.",
+      "dimensions": "3x3x0.6mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA1",
+        "SCL1",
+        "INT",
+        "RST"
+      ],
+      "partId": "f17189fe-bb60-4b3c-a113-686040ef7722",
+      "amazonUrl": "https://www.amazon.com/s?k=FT6336U&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/yc5F_Gz_bofFs0CAi9IYQb2FGCPjTyF9q9cUCMi817I/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zYzA0/LmFsaWNkbi5jb20v/a2YvSDMyNTE5YmE3/OGIyYjQyODQ4M2Yz/YzY3ZTFlZjljNTI0/TS8yMzE3MDQyNzAv/SDMyNTE5YmE3OGIy/YjQyODQ4M2YzYzY3/ZTFlZjljNTI0TS5q/cGc",
+      "boundingBox": {
+        "width": 3,
+        "height": 0.6,
+        "depth": 3
+      },
+      "position3d": {
+        "x": 10,
+        "y": 6.78,
+        "z": 8
+      }
+    },
+    {
+      "id": "spm1423hm4h_mic",
+      "name": "PDM Microphone",
+      "productName": "SPM1423HM4H-B",
+      "type": "sensor",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 1.2,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=SPM1423HM4H-B",
+      "description": "PDM digital microphone for audio input.",
+      "dimensions": "3.35x2.65x0.98mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "CLK",
+        "DATA"
+      ],
+      "partId": "a2be6ea1-4d97-488f-9424-8c3e6db118c1",
+      "amazonUrl": "https://www.amazon.com/s?k=SPM1423HM4H-B&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/Ms8k0rLoMDCMQnh4oABPCszpJriEK-f6ILRzRoS7WJo/rs:fit:500:0:1:0/g:ce/aHR0cDovL3d3dy5k/YXRhc2hlZXQuaGsv/dmlld19pbWFnZXMu/cGhwP2lkPTE5ODY3/MTg",
+      "boundingBox": {
+        "width": 3.35,
+        "height": 0.98,
+        "depth": 2.65
+      },
+      "position3d": {
+        "x": -10,
+        "y": 6.8,
+        "z": 10
+      }
+    },
+    {
+      "id": "max98357a_amp",
+      "name": "I2S Speaker Amplifier",
+      "productName": "MAX98357A",
+      "type": "actuator",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 2.8,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=MAX98357A",
+      "description": "Class D I2S speaker amplifier.",
+      "dimensions": "1.4x1.4x0.6mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "BCLK",
+        "WCLK",
+        "DOUT",
+        "L_OUT",
+        "R_OUT",
+        "SD"
+      ],
+      "partId": "04ff8bcf-0731-44b1-a024-da1fb4e86abf",
+      "amazonUrl": "https://www.amazon.com/s?k=MAX98357A&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/3RtHK1687D8Sj01gcxCu1Ag_GSycXK9-c3mZY30nOw8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9odWJ0/cm9uaWNzLmluL2lt/YWdlL2NhY2hlL2Nh/dGFsb2cvc2FnYXIv/TUFYOTgzNTctQkdB/LUkyUy1Nb2R1bGUt/NC01NTB4NTUwdy5q/cGc",
+      "boundingBox": {
+        "width": 1.4,
+        "height": 0.6,
+        "depth": 1.4
+      },
+      "position3d": {
+        "x": 10,
+        "y": 6.78,
+        "z": -8
+      }
+    },
+    {
+      "id": "small_speaker",
+      "name": "Small Speaker",
+      "productName": "Miniature Speaker 8-10mm",
+      "type": "actuator",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 1,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=8mm+miniature+speaker",
+      "description": "Small 8-10mm speaker for audio output.",
+      "dimensions": "8x8x2mm",
+      "pins": [
+        "POS",
+        "NEG"
+      ],
+      "partId": "320bdca0-272a-4b08-abc1-bf54e03a6c05",
+      "imageUrl": "https://imgs.search.brave.com/gYO8XrhBgINaQBC9OMQ4rsLKXudzOrDueGM6AHTD830/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjF6LVQ4SWlaZEwu/anBn",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "SPK+,SPK-"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Miniature%20Speaker%208-10mm&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 8,
+        "height": 2,
+        "depth": 8
+      },
+      "position3d": {
+        "x": 10,
+        "y": 6.8,
+        "z": -14
+      }
+    },
+    {
+      "id": "sim7080g_lte",
+      "name": "LTE-M Cellular Module",
+      "productName": "SIM7080G",
+      "type": "module",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 15,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=SIM7080G",
+      "description": "LTE-M cellular module with GNSS capability.",
+      "dimensions": "17.6x15.7x2.3mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "UART_TX",
+        "UART_RX",
+        "PWRKEY",
+        "RESET",
+        "SIM_DATA",
+        "SIM_CLK",
+        "SIM_RST",
+        "ANT_LTE",
+        "ANT_GNSS"
+      ],
+      "partId": "95956e76-4241-4548-96b8-87e3501778e3",
+      "amazonUrl": "https://www.amazon.com/s?k=SIM7080G&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/jSIIFuEFeYes7kyjfl0j90Tt4PDIAT6ajfoF5cSIQ3g/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9vcGVu/ZWxhYi5pby9jZG4v/c2hvcC9maWxlcy9M/SUxZR09fVC1QQ0lF/X1NJTTcwODBHLTAy/LndlYnA_dj0xNzQ4/NDk0MzQ0JndpZHRo/PTMwMA",
+      "boundingBox": {
+        "width": 17.6,
+        "height": 2.3,
+        "depth": 15.7
+      },
+      "position3d": {
+        "x": 0,
+        "y": 6.95,
+        "z": -8
+      }
+    },
+    {
+      "id": "lte_ldo",
+      "name": "LTE Module Main LDO",
+      "productName": "TPS62743",
+      "type": "power",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 3,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=TPS62743",
+      "description": "High-efficiency 3.3V LDO regulator, 2A peak current capable for SIM7080G.",
+      "dimensions": "3x3x1mm",
+      "pins": [
+        "VIN",
+        "VOUT",
+        "GND",
+        "EN",
+        "FB"
+      ],
+      "partId": "bcbc9f9e-b3de-4e0b-8b4f-9c7eee99f2e4",
+      "amazonUrl": "https://www.amazon.com/s?k=TPS62743&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/v1N5ZozUfqi6txGjph6XWgwJhcbboI_VOCAwb8h7THA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/YWxsZGF0YXNoZWV0/Lm5ldC9odG1sZGF0/YXNoZWV0Mi84NDk5/OTkvVEkxL1RQUzYy/NzQzLzU1LzEvVFBT/NjI3NDMucG5n",
+      "boundingBox": {
+        "width": 3,
+        "height": 1,
+        "depth": 3
+      },
+      "position3d": {
+        "x": -8,
+        "y": 6.85,
+        "z": -8
+      }
+    },
+    {
+      "id": "esim_mff2",
+      "name": "eSIM MFF2 Package",
+      "productName": "MFF2 eSIM",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 2,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=MFF2+eSIM",
+      "description": "MFF2 soldered eSIM for cellular connectivity.",
+      "dimensions": "6x5x0.6mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "IO",
+        "CLK",
+        "RST"
+      ],
+      "partId": "8ab62850-6d44-4c91-ac00-5eff771a58ab",
+      "amazonUrl": "https://www.amazon.com/s?k=MFF2%20eSIM&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/OfehI_pXONYY5WmfSZKE28OWH8ua_8-ZYuv0Hw0KlGg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/Z3Jvd3RoLm9ub21v/bmRvLmNvbS9hcHAv/dXBsb2Fkcy8yMDIz/LzA0LzIwMDczMTE4/L2VzaW0tZm9yLWlv/dC1oZWFkZXItaW1h/Z2UtMjQwMHgxMjU3/LXdlYi0xMDI0eDUz/NS5wbmc"
+    },
+    {
+      "id": "mia_m10q_gps",
+      "name": "GPS/GNSS Module",
+      "productName": "u-blox MIA-M10Q",
+      "type": "module",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 10,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=MIA-M10Q",
+      "description": "u-blox M10 standard precision GNSS module.",
+      "dimensions": "4.5x4.5x1mm",
+      "pins": [
+        "VCC",
+        "GND",
+        "UART_TX",
+        "UART_RX",
+        "PPS",
+        "EN",
+        "ANT_IN"
+      ],
+      "partId": "33628483-e29c-428b-b9a4-902d9edf3161",
+      "imageUrl": "https://imgs.search.brave.com/GdGfKuah9IpRalqMWzRG8gHu23uTWbfNeueF1W3NdMo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/c3BhcmtmdW4uY29t/L3IvNjAwLTYwMC9h/c3NldHMvZS84Lzgv/OS84L1NwYXJrRnVu/X3UtYmxveF9NQVgt/TTEwU19Cb2FyZF9E/aW1lbnNpb25zLnBu/Zw",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "VCC,GND,TXD,RXD,PPS,ANT_IN"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=u-blox%20MIA-M10Q&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 4.5,
+        "height": 1,
+        "depth": 4.5
+      },
+      "position3d": {
+        "x": 8,
+        "y": 6.85,
+        "z": 8
+      }
+    },
+    {
+      "id": "lte_fpc_antenna_conn",
+      "name": "LTE-M FPC Antenna Connector",
+      "productName": "RF FPC Connector",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.4,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=rf+fpc+connector",
+      "description": "Connector for external LTE-M FPC antenna.",
+      "dimensions": "2x2x1mm",
+      "pins": [
+        "RF",
+        "GND"
+      ],
+      "partId": "d712c27d-758d-4a60-a5d3-dd5d55b9f92a",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "CSI_DATA0_P/N,CSI_DATA1_P/N,CSI_CLK_P/N,I2C_SDA,I2C_SCL,GND,3.3V"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=RF%20FPC%20Connector&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/tzfT4Ipsw4StqNYmAl4PlTqDLqZXXJRCZGrP11duTO8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMubW9sZXguY29t/L2lzL2ltYWdlL21v/bGV4L1NsaW1TdGFj/ayUyMEItdG8tQiUy/MENvbm5lY3RvcnNf/NUcxNSg2XzRSRilf/UmVjXzIxNTM2MC0w/MDY0X1BsdWdfMjE1/MzYxLTAwNjQ_dHM9/MTc3MDMwOTIwMzg5/MSZkcHI9b2ZmJndp/ZD0zMjA"
+    },
+    {
+      "id": "gps_fpc_antenna_conn",
+      "name": "GPS FPC Antenna Connector",
+      "productName": "RF FPC Connector",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.4,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=rf+fpc+connector",
+      "description": "Connector for external GPS L1 FPC antenna (user preference).",
+      "dimensions": "2x2x1mm",
+      "pins": [
+        "RF",
+        "GND"
+      ],
+      "partId": "d712c27d-758d-4a60-a5d3-dd5d55b9f92a",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "CSI_DATA0_P/N,CSI_DATA1_P/N,CSI_CLK_P/N,I2C_SDA,I2C_SCL,GND,3.3V"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=RF%20FPC%20Connector&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/tzfT4Ipsw4StqNYmAl4PlTqDLqZXXJRCZGrP11duTO8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMubW9sZXguY29t/L2lzL2ltYWdlL21v/bGV4L1NsaW1TdGFj/ayUyMEItdG8tQiUy/MENvbm5lY3RvcnNf/NUcxNSg2XzRSRilf/UmVjXzIxNTM2MC0w/MDY0X1BsdWdfMjE1/MzYxLTAwNjQ_dHM9/MTc3MDMwOTIwMzg5/MSZkcHI9b2ZmJndp/ZD0zMjA"
+    },
+    {
+      "id": "power_button",
+      "name": "POWER Button",
+      "productName": "Tactile Button",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.15,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=tactile+button+3x3mm",
+      "description": "Momentary switch for power on/off control.",
+      "dimensions": "3x3x2mm",
+      "pins": [
+        "GPIO",
+        "GND"
+      ],
+      "partId": "55bac7bb-4cfa-4e79-a524-e3e716a66cdc",
+      "amazonUrl": "https://www.amazon.com/s?k=Tactile%20Button&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/h045XX811xottgZV7RcX7QCbNZR0P2-i8I6pl35Sn54/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFUUFdCK0dpOEwu/anBn"
+    },
+    {
+      "id": "boot_button",
+      "name": "BOOT Button",
+      "productName": "Tactile Button",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.15,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=tactile+button+3x3mm",
+      "description": "Momentary switch to enter ESP32 download mode.",
+      "dimensions": "3x3x2mm",
+      "pins": [
+        "GPIO",
+        "GND"
+      ],
+      "partId": "55bac7bb-4cfa-4e79-a524-e3e716a66cdc",
+      "amazonUrl": "https://www.amazon.com/s?k=Tactile%20Button&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/h045XX811xottgZV7RcX7QCbNZR0P2-i8I6pl35Sn54/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFUUFdCK0dpOEwu/anBn"
+    },
+    {
+      "id": "coin_cell_battery",
+      "name": "RTC Backup Battery",
+      "productName": "CR1220 Coin Cell",
+      "type": "power",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.8,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=CR1220",
+      "description": "Small coin cell battery for PCF8563 RTC backup power.",
+      "dimensions": "12.5x12.5x2mm",
+      "pins": [
+        "POS",
+        "NEG"
+      ],
+      "partId": "50c8d775-1938-42c9-948b-66a3d1fbc84a",
+      "amazonUrl": "https://www.amazon.com/s?k=CR1220%20Coin%20Cell&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "imageUrl": "https://imgs.search.brave.com/iOmXxLZ46h8rvE-V27ncMxkZug6-w9a-MYpO6CORo6I/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9iYXR0/ZXJ5LXdob2xlc2Fs/ZS5jb20vd3AtY29u/dGVudC91cGxvYWRz/L3Byb2R1Y3RfaW1h/Z2VzL3Byb2R1Y3Qt/MTYwNTUtMTczMTUx/ODkwNC1DUjIzMzAu/anBn",
+      "boundingBox": {
+        "width": 12.5,
+        "height": 2,
+        "depth": 12.5
+      },
+      "position3d": {
+        "x": -8,
+        "y": 6.8,
+        "z": 0
+      }
+    },
+    {
+      "id": "bulk_capacitor_lte",
+      "name": "LTE Bulk Capacitor",
+      "productName": "1000uF Capacitor",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 1,
+      "estimatedCost": 0.3,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=1000uF+ceramic+capacitor+SMD",
+      "description": "Bulk capacitor for LTE module power stability (1000uF).",
+      "dimensions": "7.3x4.3x4.1mm",
+      "pins": [
+        "POS",
+        "NEG"
+      ],
+      "partId": "c7f7ae8f-57bc-441e-b454-c4dd1319dcf0",
+      "imageUrl": "https://imgs.search.brave.com/MvetV-Al08CSWZ3TdXJ14c-0bMSnGZFlJlzceBSQxV8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzF1VzljYkowMEwu/anBn",
+      "research": {
+        "specs": [
+          {
+            "label": "pins",
+            "value": "+,-"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=1000uF%20Capacitor&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "i2c0_pullups",
+      "name": "I2C0 Pull-ups",
+      "productName": "4.7kOhm Resistor (0402)",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 2,
+      "estimatedCost": 0.02,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=4.7k+ohm+0402",
+      "description": "4.7kΩ pull-up resistors for shared I2C Bus 0.",
+      "dimensions": "1x0.5x0.3mm",
+      "pins": [
+        "PAD1",
+        "PAD2"
+      ],
+      "partId": "068b0c7b-4c75-4274-a7fe-28d139e59b78",
+      "imageUrl": "https://imgs.search.brave.com/XZQk4ZlPW919jF57ZudH_jB9dKfRnJtXjl2ZLa2y02k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLmVi/YXlpbWcuY29tL2lt/YWdlcy9nL1d2c0FB/T1N3SWdOWHFyZ0gv/cy1sNTAwLmpwZw",
+      "amazonUrl": "https://www.amazon.com/s?k=4.7kOhm%20Resistor%20(0402)&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "i2c1_pullups",
+      "name": "I2C1 Pull-ups",
+      "productName": "4.7kOhm Resistor (0402)",
+      "type": "other",
+      "category": "electrical",
+      "quantity": 2,
+      "estimatedCost": 0.02,
+      "purchaseUrl": "https://www.digikey.com/en/products/result?keywords=4.7k+ohm+0402",
+      "description": "4.7kΩ pull-up resistors for separate I2C Bus 1.",
+      "dimensions": "1x0.5x0.3mm",
+      "pins": [
+        "PAD1",
+        "PAD2"
+      ],
+      "partId": "068b0c7b-4c75-4274-a7fe-28d139e59b78",
+      "imageUrl": "https://imgs.search.brave.com/XZQk4ZlPW919jF57ZudH_jB9dKfRnJtXjl2ZLa2y02k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLmVi/YXlpbWcuY29tL2lt/YWdlcy9nL1d2c0FB/T1N3SWdOWHFyZ0gv/cy1sNTAwLmpwZw",
+      "amazonUrl": "https://www.amazon.com/s?k=4.7kOhm%20Resistor%20(0402)&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "watch_main_enclosure",
+      "name": "Smartwatch Main Enclosure",
+      "productName": "Custom 3D Print",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 5,
+      "purchaseUrl": "N/A",
+      "description": "Main body of the smartwatch housing PCB, display, and battery. Includes internal mounts, cutouts for USB-C, mic, speaker, buttons, and a window for HR/SpO2 sensor.",
+      "dimensions": "40x36x10mm",
+      "material": "PETG",
+      "printSettings": "FDM, 0.15mm layer height, 20% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 40,
+        "height": 10,
+        "depth": 36
+      },
+      "position3d": {
+        "x": 0,
+        "y": 5,
+        "z": 0
+      }
+    },
+    {
+      "id": "watch_back_cover",
+      "name": "Smartwatch Back Cover",
+      "productName": "Custom 3D Print",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 2,
+      "purchaseUrl": "N/A",
+      "description": "Bottom cover for the smartwatch, seals the enclosure. Includes opening for heart rate sensor lens.",
+      "dimensions": "40x36x2mm",
+      "material": "PETG",
+      "printSettings": "FDM, 0.15mm layer height, 100% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 40,
+        "height": 2,
+        "depth": 36
+      },
+      "position3d": {
+        "x": 0,
+        "y": -1,
+        "z": 0
+      }
+    },
+    {
+      "id": "display_retaining_frame",
+      "name": "Display Retaining Frame",
+      "productName": "Custom 3D Print",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 0.8,
+      "purchaseUrl": "N/A",
+      "description": "Frame to hold the 1.54 inch IPS LCD and capacitive touch panel securely in the main enclosure.",
+      "dimensions": "32x30x2mm",
+      "material": "PETG",
+      "printSettings": "FDM, 0.15mm layer height, 20% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 32,
+        "height": 2,
+        "depth": 30
+      },
+      "position3d": {
+        "x": 0,
+        "y": 9.5,
+        "z": 0
+      }
+    },
+    {
+      "id": "button_actuator_power",
+      "name": "Power Button Actuator",
+      "productName": "Custom 3D Print",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 0.1,
+      "purchaseUrl": "N/A",
+      "description": "Custom button cap for the physical power button.",
+      "dimensions": "4x4x3mm",
+      "material": "PETG",
+      "printSettings": "FDM, 0.1mm layer height, 100% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 4,
+        "height": 3,
+        "depth": 4
+      },
+      "position3d": {
+        "x": 22,
+        "y": 6.5,
+        "z": -10
+      }
+    },
+    {
+      "id": "button_actuator_boot",
+      "name": "Boot Button Actuator",
+      "productName": "Custom 3D Print",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 0.1,
+      "purchaseUrl": "N/A",
+      "description": "Custom button cap for the physical boot (download mode) button.",
+      "dimensions": "4x4x3mm",
+      "material": "PETG",
+      "printSettings": "FDM, 0.1mm layer height, 100% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 4,
+        "height": 3,
+        "depth": 4
+      },
+      "position3d": {
+        "x": 22,
+        "y": 6.5,
+        "z": 10
+      }
+    },
+    {
+      "id": "hr_sensor_lens_insert",
+      "name": "HR Sensor Optical Lens",
+      "productName": "Custom 3D Print (Transparent)",
+      "type": "3d_printed",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 0.5,
+      "purchaseUrl": "N/A",
+      "description": "Transparent insert for the MAX30102 LED/sensor window, allowing skin contact while protecting the sensor.",
+      "dimensions": "5x5x1.5mm",
+      "material": "Clear Resin",
+      "printSettings": "SLA, 0.05mm layer height, 100% infill",
+      "partId": "f0806e81-7ac5-43e7-b9b5-3cc71879e884",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "Infill 50%, Layer Height 0.2mm, No Supports"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=Custom%203D%20Print%20(Transparent)&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl",
+      "boundingBox": {
+        "width": 5,
+        "height": 1.5,
+        "depth": 5
+      },
+      "position3d": {
+        "x": 0,
+        "y": -0.25,
+        "z": 15.5
+      }
+    },
+    {
+      "id": "pcb_standoffs",
+      "name": "PCB Mounting Standoffs",
+      "productName": "M1.4x3mm Brass Standoffs",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 4,
+      "estimatedCost": 0.2,
+      "purchaseUrl": "https://www.amazon.com/s?k=m1.4x3mm+standoffs",
+      "description": "Small brass standoffs for mounting the PCB within the enclosure.",
+      "dimensions": "M1.4x3mm",
+      "partId": "fcdfa929-d033-43f7-9336-a9fc855eedfa",
+      "amazonUrl": "https://www.amazon.com/s?k=M1.4x3mm%20Brass%20Standoffs&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "pcb_screws",
+      "name": "PCB Mounting Screws",
+      "productName": "M1.4x2mm Flat Head Screws",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 4,
+      "estimatedCost": 0.05,
+      "purchaseUrl": "https://www.amazon.com/s?k=m1.4x2mm+flat+head+screws",
+      "description": "Small screws to secure the PCB to the standoffs.",
+      "dimensions": "M1.4x2mm",
+      "partId": "7cb9b22d-c626-4385-aeb0-030cdb2ecbd5",
+      "amazonUrl": "https://www.amazon.com/s?k=M1.4x2mm%20Flat%20Head%20Screws&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "enclosure_closure_screws",
+      "name": "Enclosure Closure Screws",
+      "productName": "M1.4x4mm Screws",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 4,
+      "estimatedCost": 0.05,
+      "purchaseUrl": "https://www.amazon.com/s?k=m1.4x4mm+screws",
+      "description": "Screws to secure the back cover to the main enclosure.",
+      "dimensions": "M1.4x4mm",
+      "partId": "fbd0f12e-a328-468b-99ba-649e76244743",
+      "amazonUrl": "https://www.amazon.com/s?k=M1.4x4mm%20Screws&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "watch_strap",
+      "name": "Smartwatch Strap",
+      "productName": "Generic 20mm Smartwatch Strap",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 5,
+      "purchaseUrl": "https://www.amazon.com/s?k=20mm+smartwatch+strap",
+      "description": "Standard smartwatch band to wear the device. Will house external FPC antennas.",
+      "dimensions": "20mm width",
+      "partId": "76261e9f-91d7-4999-b482-d9d8bbf9a86a",
+      "material": "Silicone",
+      "amazonUrl": "https://www.amazon.com/s?k=Generic%2020mm%20Smartwatch%20Strap&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "lte_fpc_antenna",
+      "name": "LTE-M FPC Antenna",
+      "productName": "LTE FPC Antenna",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 3,
+      "purchaseUrl": "https://www.amazon.com/s?k=lte+fpc+antenna",
+      "description": "Flexible PCB antenna for LTE-M, to be integrated into the watch band.",
+      "dimensions": "40x10x0.5mm",
+      "partId": "b81a4daf-2432-41ab-84c6-01ef31aa24f9",
+      "amazonUrl": "https://www.amazon.com/s?k=LTE%20FPC%20Antenna&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "gps_fpc_antenna",
+      "name": "GPS FPC Antenna",
+      "productName": "GPS FPC Antenna",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 2.5,
+      "purchaseUrl": "https://www.amazon.com/s?k=gps+fpc+antenna",
+      "description": "Flexible PCB antenna for GPS L1, to be integrated into the watch band (user preference).",
+      "dimensions": "25x5x0.5mm",
+      "partId": "ebd7e3a8-476f-4273-85fc-69dfea38530c",
+      "material": "PETG",
+      "research": {
+        "specs": [
+          {
+            "label": "print_settings",
+            "value": "0.15mm layer height, 100% infill"
+          }
+        ]
+      },
+      "amazonUrl": "https://www.amazon.com/s?k=GPS%20FPC%20Antenna&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "waterproof_gasket_usb",
+      "name": "USB-C Port Gasket",
+      "productName": "Silicone USB-C Gasket",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 0.5,
+      "purchaseUrl": "https://www.amazon.com/s?k=usb+c+waterproof+gasket",
+      "description": "Small silicone gasket to provide water resistance around the USB-C port.",
+      "dimensions": "8x6x1mm",
+      "partId": "a37b561c-dc90-4def-bedb-453557f305ce",
+      "material": "Silicone",
+      "amazonUrl": "https://www.amazon.com/s?k=Silicone%20USB-C%20Gasket&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "waterproof_gasket_buttons",
+      "name": "Button Gaskets",
+      "productName": "Silicone Button Gasket",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 2,
+      "estimatedCost": 0.2,
+      "purchaseUrl": "https://www.amazon.com/s?k=silicone+button+gasket",
+      "description": "Small silicone gaskets for water resistance around the power and boot buttons.",
+      "dimensions": "4x4x1mm",
+      "partId": "a37b561c-dc90-4def-bedb-453557f305ce",
+      "material": "Silicone",
+      "amazonUrl": "https://www.amazon.com/s?k=Silicone%20Button%20Gasket&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    },
+    {
+      "id": "display_adhesive_tape",
+      "name": "Display Mounting Adhesive",
+      "productName": "3M VHB Tape",
+      "type": "misc",
+      "category": "mechanical",
+      "quantity": 1,
+      "estimatedCost": 1,
+      "purchaseUrl": "https://www.amazon.com/s?k=3m+vhb+adhesive+tape",
+      "description": "Double-sided adhesive tape for securing the display assembly to the enclosure.",
+      "dimensions": "50x50x0.5mm",
+      "partId": "197b823d-fff5-450e-932a-651470edb6b9",
+      "material": "Acrylic Foam",
+      "amazonUrl": "https://www.amazon.com/s?k=3M%20VHB%20Tape&linkCode=ll2&tag=blueprintam-20&linkId=4ccf4163514d07f9bf547ac1c23fd3e0&language=en_US&ref_=as_li_ss_tl"
+    }
+  ],
+  "electricalConnections": [
+    {
+      "source": "usb_c_conn",
+      "target": "axp2101_pmic",
+      "type": "power",
+      "voltage": "5V"
+    },
+    {
+      "source": "lipo_battery",
+      "target": "axp2101_pmic",
+      "type": "power",
+      "voltage": "3.7V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "esp32_mcu",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "bmi270_imu",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "max30102_sensor",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "pcf8563_rtc",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "spm1423hm4h_mic",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "max98357a_amp",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "st7789v3_display",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "ft6336u_touch",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "st7789v3_display",
+      "type": "power",
+      "voltage": "3.3V (Backlight)"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "sim7080g_lte",
+      "type": "data",
+      "label": "Enable",
+      "protocol": "GPIO",
+      "sourcePin": "ALDO4_OUT",
+      "targetPin": "PWRKEY"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "mia_m10q_gps",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "axp2101_pmic",
+      "target": "drv2605l_haptic",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "lipo_battery",
+      "target": "lte_ldo",
+      "type": "power",
+      "voltage": "3.7V"
+    },
+    {
+      "source": "lte_ldo",
+      "target": "sim7080g_lte",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "lte_ldo",
+      "target": "bulk_capacitor_lte",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "coin_cell_battery",
+      "target": "pcf8563_rtc",
+      "type": "power",
+      "voltage": "3V"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "axp2101_pmic",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SDA",
+      "targetPin": "I2C_SDA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "axp2101_pmic",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SCL",
+      "targetPin": "I2C_SCL"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "pcf8563_rtc",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SDA",
+      "targetPin": "SDA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "pcf8563_rtc",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SCL",
+      "targetPin": "SCL"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "bmi270_imu",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SDA",
+      "targetPin": "SDA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "bmi270_imu",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SCL",
+      "targetPin": "SCL"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "max30102_sensor",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SDA",
+      "targetPin": "SDA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "max30102_sensor",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SCL",
+      "targetPin": "SCL"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "drv2605l_haptic",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SDA",
+      "targetPin": "SDA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "drv2605l_haptic",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C0_SCL",
+      "targetPin": "SCL"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "ft6336u_touch",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C1_SDA",
+      "targetPin": "SDA1"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "ft6336u_touch",
+      "type": "data",
+      "protocol": "I2C",
+      "sourcePin": "I2C1_SCL",
+      "targetPin": "SCL1"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "st7789v3_display",
+      "type": "data",
+      "protocol": "SPI",
+      "sourcePin": "SPI_CS",
+      "targetPin": "CS"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "st7789v3_display",
+      "type": "data",
+      "protocol": "SPI",
+      "sourcePin": "SPI_MOSI",
+      "targetPin": "MOSI"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "st7789v3_display",
+      "type": "data",
+      "protocol": "SPI",
+      "sourcePin": "SPI_SCK",
+      "targetPin": "SCK"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "st7789v3_display",
+      "type": "data",
+      "protocol": "GPIO",
+      "sourcePin": "GPIO14",
+      "targetPin": "DC"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "st7789v3_display",
+      "type": "data",
+      "protocol": "GPIO",
+      "sourcePin": "GPIO15",
+      "targetPin": "RST"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "sim7080g_lte",
+      "type": "data",
+      "protocol": "UART",
+      "sourcePin": "UART0_TX",
+      "targetPin": "UART_RX"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "sim7080g_lte",
+      "type": "data",
+      "protocol": "UART",
+      "sourcePin": "UART0_RX",
+      "targetPin": "UART_TX"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "mia_m10q_gps",
+      "type": "data",
+      "protocol": "UART",
+      "sourcePin": "UART1_TX",
+      "targetPin": "UART_RX"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "mia_m10q_gps",
+      "type": "data",
+      "protocol": "UART",
+      "sourcePin": "UART1_RX",
+      "targetPin": "UART_TX"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "spm1423hm4h_mic",
+      "type": "data",
+      "protocol": "PDM",
+      "sourcePin": "PDM_CLK",
+      "targetPin": "CLK"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "spm1423hm4h_mic",
+      "type": "data",
+      "protocol": "PDM",
+      "sourcePin": "PDM_DATA",
+      "targetPin": "DATA"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "max98357a_amp",
+      "type": "data",
+      "protocol": "I2S",
+      "sourcePin": "I2S_BCLK",
+      "targetPin": "BCLK"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "max98357a_amp",
+      "type": "data",
+      "protocol": "I2S",
+      "sourcePin": "I2S_WCLK",
+      "targetPin": "WCLK"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "max98357a_amp",
+      "type": "data",
+      "protocol": "I2S",
+      "sourcePin": "I2S_DOUT",
+      "targetPin": "DOUT"
+    },
+    {
+      "source": "max98357a_amp",
+      "target": "small_speaker",
+      "type": "data",
+      "label": "Audio Out",
+      "sourcePin": "L_OUT",
+      "targetPin": "POS"
+    },
+    {
+      "source": "max98357a_amp",
+      "target": "small_speaker",
+      "type": "data",
+      "label": "Audio Out",
+      "sourcePin": "R_OUT",
+      "targetPin": "NEG"
+    },
+    {
+      "source": "drv2605l_haptic",
+      "target": "lra_motor",
+      "type": "data",
+      "label": "Haptic Drive",
+      "sourcePin": "IN_OUT1",
+      "targetPin": "POS"
+    },
+    {
+      "source": "drv2605l_haptic",
+      "target": "lra_motor",
+      "type": "data",
+      "label": "Haptic Drive",
+      "sourcePin": "IN_OUT2",
+      "targetPin": "NEG"
+    },
+    {
+      "source": "sim7080g_lte",
+      "target": "lte_fpc_antenna_conn",
+      "type": "data",
+      "protocol": "RF",
+      "sourcePin": "ANT_LTE",
+      "targetPin": "RF"
+    },
+    {
+      "source": "mia_m10q_gps",
+      "target": "gps_fpc_antenna_conn",
+      "type": "data",
+      "protocol": "RF",
+      "sourcePin": "ANT_IN",
+      "targetPin": "RF"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "power_button",
+      "type": "data",
+      "protocol": "GPIO",
+      "sourcePin": "GPIO0",
+      "targetPin": "GPIO"
+    },
+    {
+      "source": "esp32_mcu",
+      "target": "boot_button",
+      "type": "data",
+      "protocol": "GPIO",
+      "sourcePin": "GPIO9",
+      "targetPin": "GPIO"
+    },
+    {
+      "source": "sim7080g_lte",
+      "target": "esim_mff2",
+      "type": "data",
+      "protocol": "SIM",
+      "sourcePin": "SIM_DATA",
+      "targetPin": "IO"
+    },
+    {
+      "source": "sim7080g_lte",
+      "target": "esim_mff2",
+      "type": "data",
+      "protocol": "SIM",
+      "sourcePin": "SIM_CLK",
+      "targetPin": "CLK"
+    },
+    {
+      "source": "sim7080g_lte",
+      "target": "esim_mff2",
+      "type": "data",
+      "protocol": "SIM",
+      "sourcePin": "SIM_RST",
+      "targetPin": "RST"
+    },
+    {
+      "source": "i2c0_pullups",
+      "target": "esp32_mcu",
+      "type": "power",
+      "voltage": "3.3V"
+    },
+    {
+      "source": "i2c1_pullups",
+      "target": "esp32_mcu",
+      "type": "power",
+      "voltage": "3.3V"
+    }
+  ],
+  "mechanicalConnections": [
+    {
+      "source": "watch_main_enclosure",
+      "target": "watch_back_cover",
+      "label": "Secured by enclosure_closure_screws"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "display_retaining_frame",
+      "label": "Secures display assembly"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "power_button",
+      "label": "Houses actuator"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "boot_button",
+      "label": "Houses actuator"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "pcb_standoffs",
+      "label": "Mounting points"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "waterproof_gasket_usb",
+      "label": "Seals USB-C cutout"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "waterproof_gasket_buttons",
+      "label": "Seals button cutouts"
+    },
+    {
+      "source": "watch_main_enclosure",
+      "target": "watch_strap",
+      "label": "Attaches to"
+    },
+    {
+      "source": "watch_back_cover",
+      "target": "hr_sensor_lens_insert",
+      "label": "Holds lens"
+    },
+    {
+      "source": "pcb_standoffs",
+      "target": "pcb_screws",
+      "label": "Secured by"
+    },
+    {
+      "source": "display_retaining_frame",
+      "target": "display_adhesive_tape",
+      "label": "Secured to enclosure with"
+    },
+    {
+      "source": "watch_strap",
+      "target": "lte_fpc_antenna_conn",
+      "label": "Houses antenna"
+    },
+    {
+      "source": "watch_strap",
+      "target": "gps_fpc_antenna_conn",
+      "label": "Houses antenna"
+    },
+    {
+      "source": "lipo_battery",
+      "target": "watch_main_enclosure",
+      "label": "Stacked below/above PCB in"
+    },
+    {
+      "source": "st7789v3_display",
+      "target": "display_retaining_frame",
+      "label": "Mounted in"
+    },
+    {
+      "source": "usb_c_conn",
+      "target": "watch_main_enclosure",
+      "label": "Fits into cutout"
+    },
+    {
+      "source": "max30102_sensor",
+      "target": "hr_sensor_lens_insert",
+      "label": "Aligned with"
+    },
+    {
+      "source": "spm1423hm4h_mic",
+      "target": "watch_main_enclosure",
+      "label": "Aligned with grille"
+    },
+    {
+      "source": "small_speaker",
+      "target": "watch_main_enclosure",
+      "label": "Aligned with grille"
+    },
+    {
+      "source": "lte_fpc_antenna_conn",
+      "target": "lte_fpc_antenna_conn",
+      "label": "Connects to"
+    },
+    {
+      "source": "gps_fpc_antenna_conn",
+      "target": "gps_fpc_antenna_conn",
+      "label": "Connects to"
+    },
+    {
+      "source": "power_button",
+      "target": "power_button",
+      "label": "Actuated by"
+    },
+    {
+      "source": "boot_button",
+      "target": "boot_button",
+      "label": "Actuated by"
+    }
+  ],
+  "instructionPreamble": {
+    "tools": [
+      "Soldering iron with fine tip",
+      "Solder paste and stencil (for QFN/BGA/0402 components)",
+      "Hot air rework station",
+      "Microscope or magnifying lamp",
+      "Precision tweezers",
+      "Multimeter with continuity test",
+      "Precision screwdriver set (M1.4 compatible)",
+      "3D printer (FDM for PETG, SLA for clear resin)",
+      "Deburring tool or craft knife",
+      "USB-C to USB-A/C cable (for programming)",
+      "Small pliers or wire cutters"
+    ],
+    "assumptions": [
+      "Custom 4-layer PCB has been manufactured externally",
+      "Builder has experience with surface-mount device (SMD) soldering, including fine-pitch and QFN/BGA packages",
+      "Basic familiarity with ESP32 firmware development (ESP-IDF or Arduino IDE)",
+      "Access to 3D printing resources for specified materials and settings",
+      "Understanding of I2C, SPI, UART, I2S, and PDM communication protocols"
+    ]
+  },
+  "instructionSteps": [
+    {
+      "id": "fabricate",
+      "subSteps": [
+        {
+          "id": "fabricate_1",
+          "title": "3D print all PETG enclosure parts",
+          "partIds": [
+            "watch_main_enclosure",
+            "watch_back_cover",
+            "display_retaining_frame",
+            "button_actuator_power",
+            "button_actuator_boot"
+          ]
+        },
+        {
+          "id": "fabricate_2",
+          "title": "3D print HR sensor optical lens from clear resin",
+          "partIds": [
+            "hr_sensor_lens_insert"
+          ]
+        },
+        {
+          "id": "fabricate_3",
+          "title": "Clean and deburr all 3D printed components",
+          "partIds": [
+            "watch_main_enclosure",
+            "watch_back_cover",
+            "display_retaining_frame",
+            "button_actuator_power",
+            "button_actuator_boot",
+            "hr_sensor_lens_insert"
+          ]
+        },
+        {
+          "id": "fabricate_4",
+          "title": "Inspect custom PCB for manufacturing defects",
+          "partIds": []
+        }
+      ]
+    },
+    {
+      "id": "wire",
+      "subSteps": [
+        {
+          "id": "wire_1",
+          "title": "Solder ESP32-PICO-V3-02 and AXP2101 to PCB",
+          "partIds": [
+            "esp32_mcu",
+            "axp2101_pmic"
+          ]
+        },
+        {
+          "id": "wire_2",
+          "title": "Solder LTE (SIM7080G, LDO, bulk capacitor, eSIM, FPC connector) and GPS (MIA-M10Q, FPC connector) modules/components",
+          "partIds": [
+            "sim7080g_lte",
+            "lte_ldo",
+            "bulk_capacitor_lte",
+            "esim_mff2",
+            "lte_fpc_antenna_conn",
+            "mia_m10q_gps",
+            "gps_fpc_antenna_conn"
+          ]
+        },
+        {
+          "id": "wire_3",
+          "title": "Solder I2C (PCF8563, BMI270, MAX30102, DRV2605L, FT6336U), SPI (ST7789V3), and audio (SPM1423HM4H-B, MAX98357A) components",
+          "partIds": [
+            "pcf8563_rtc",
+            "max30102_sensor",
+            "bmi270_imu",
+            "drv2605l_haptic",
+            "st7789v3_display",
+            "ft6336u_touch",
+            "spm1423hm4h_mic",
+            "max98357a_amp",
+            "i2c0_pullups",
+            "i2c1_pullups"
+          ]
+        },
+        {
+          "id": "wire_4",
+          "title": "Solder USB-C connector, power/boot buttons, and passives (0402 resistors, capacitors)",
+          "partIds": [
+            "usb_c_conn",
+            "power_button",
+            "boot_button"
+          ]
+        },
+        {
+          "id": "wire_5",
+          "title": "Connect LRA vibration motor and small speaker to their respective drivers on the PCB",
+          "partIds": [
+            "lra_motor",
+            "small_speaker",
+            "drv2605l_haptic",
+            "max98357a_amp"
+          ]
+        },
+        {
+          "id": "wire_6",
+          "title": "Connect LiPo battery to AXP2101 input pads and coin cell battery to PCF8563 input pads",
+          "partIds": [
+            "lipo_battery",
+            "coin_cell_battery",
+            "axp2101_pmic",
+            "pcf8563_rtc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bringup",
+      "subSteps": [
+        {
+          "id": "bringup_1",
+          "title": "Perform initial power-on via USB-C and verify AXP2101 operation and voltage rails",
+          "partIds": [
+            "usb_c_conn",
+            "axp2101_pmic",
+            "esp32_mcu",
+            "lte_ldo"
+          ]
+        },
+        {
+          "id": "bringup_2",
+          "title": "Connect ESP32 via USB-C and verify basic connectivity and flash initial bootloader/firmware",
+          "partIds": [
+            "esp32_mcu",
+            "usb_c_conn"
+          ]
+        },
+        {
+          "id": "bringup_3",
+          "title": "Test all I2C buses (Bus 0 & Bus 1) to confirm recognition of AXP2101, PCF8563, BMI270, MAX30102, DRV2605L, and FT6336U",
+          "partIds": [
+            "esp32_mcu",
+            "axp2101_pmic",
+            "pcf8563_rtc",
+            "bmi270_imu",
+            "max30102_sensor",
+            "drv2605l_haptic",
+            "ft6336u_touch"
+          ]
+        },
+        {
+          "id": "bringup_4",
+          "title": "Test SPI display (ST7789V3) functionality and confirm image output and backlight control",
+          "partIds": [
+            "esp32_mcu",
+            "st7789v3_display",
+            "axp2101_pmic"
+          ]
+        },
+        {
+          "id": "bringup_5",
+          "title": "Verify PDM microphone (SPM1423HM4H-B) input and I2S speaker amplifier (MAX98357A) output",
+          "partIds": [
+            "esp32_mcu",
+            "spm1423hm4h_mic",
+            "max98357a_amp",
+            "small_speaker"
+          ]
+        },
+        {
+          "id": "bringup_6",
+          "title": "Initiate communication with SIM7080G LTE module and MIA-M10Q GPS module via UART",
+          "partIds": [
+            "esp32_mcu",
+            "sim7080g_lte",
+            "mia_m10q_gps"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "subSteps": [
+        {
+          "id": "assemble_1",
+          "title": "Mount PCB into the main enclosure using standoffs and screws",
+          "partIds": [
+            "watch_main_enclosure",
+            "pcb_standoffs",
+            "pcb_screws",
+            "esp32_mcu",
+            "axp2101_pmic"
+          ],
+          "detail": {
+            "summary": "Mount the main PCB into the smartwatch enclosure with standoffs and screws.",
+            "steps": [
+              "Carefully position the assembled 38x34mm PCB inside the 3D-printed Smartwatch Main Enclosure.",
+              "Align the PCB's mounting holes with the four integrated mounting points in the enclosure.",
+              "Insert four M1.4x3mm PCB Mounting Standoffs through the PCB's mounting holes into the enclosure.",
+              "Secure the PCB by fastening four M1.4x2mm PCB Mounting Screws into the standoffs, ensuring a snug fit."
+            ],
+            "tip": "Avoid overtightening the tiny screws to prevent damage to the PCB or 3D-printed enclosure mounts."
+          }
+        },
+        {
+          "id": "assemble_2",
+          "title": "Install USB-C port gasket and waterproof button gaskets, then insert button actuators",
+          "partIds": [
+            "watch_main_enclosure",
+            "waterproof_gasket_usb",
+            "waterproof_gasket_buttons",
+            "button_actuator_power",
+            "button_actuator_boot",
+            "usb_c_conn",
+            "power_button",
+            "boot_button"
+          ]
+        },
+        {
+          "id": "assemble_3",
+          "title": "Secure the display (ST7789V3) and touch panel (FT6336U) into the retaining frame, then attach to the main enclosure with adhesive tape",
+          "partIds": [
+            "st7789v3_display",
+            "ft6336u_touch",
+            "display_retaining_frame",
+            "display_adhesive_tape",
+            "watch_main_enclosure"
+          ]
+        },
+        {
+          "id": "assemble_4",
+          "title": "Place the LiPo battery within the enclosure, stacked as specified",
+          "partIds": [
+            "lipo_battery",
+            "watch_main_enclosure"
+          ]
+        },
+        {
+          "id": "assemble_5",
+          "title": "Insert the HR sensor optical lens into the back cover, then secure the back cover to the main enclosure",
+          "partIds": [
+            "hr_sensor_lens_insert",
+            "watch_back_cover",
+            "watch_main_enclosure",
+            "enclosure_closure_screws"
+          ]
+        },
+        {
+          "id": "assemble_6",
+          "title": "Integrate LTE and GPS FPC antennas into the smartwatch strap and connect to FPC connectors on PCB",
+          "partIds": [
+            "watch_strap",
+            "lte_fpc_antenna",
+            "gps_fpc_antenna",
+            "lte_fpc_antenna_conn",
+            "gps_fpc_antenna_conn"
+          ]
+        },
+        {
+          "id": "assemble_7",
+          "title": "Attach the completed watch case to the smartwatch strap",
+          "partIds": [
+            "watch_main_enclosure",
+            "watch_strap"
+          ]
+        },
+        {
+          "id": "assemble_8",
+          "title": "Perform final system test of all functions",
+          "partIds": []
+        }
+      ]
+    }
+  ],
+  "projectDescription": "A 38x34mm ESP32-PICO-V3-02-based smartwatch prototype integrating a 1.54\" IPS LCD with touch, HR/SpO2, IMU, PDM mic, and LTE-M/GPS for comprehensive wearable functionality. Power is managed by an AXP2101, supporting LiPo battery via USB-C.",
+  "originalPrompt": "Design a smartwatch prototype PCB based on ESP32 with the following specifications:\n\n## MCU & Core\n- Main MCU: ESP32-PICO-V3-02 (SiP with 8MB flash + 2MB PSRAM, WiFi + BLE + Bluetooth Classic)\n- Power management: AXP2101 (I2C address 0x34) managing all voltage rails\n- Real-time clock: PCF8563 (I2C address 0x51) with backup coin cell battery\n- Battery: single-cell 3.7V LiPo ~300-400mAh, USB-C charging\n\n## Sensors (all on shared I2C bus, SDA/SCL with 4.7kΩ pull-ups)\n- Heart rate + SpO2: MAX30102 (I2C address 0x57) — place on board edge for skin contact with LED window cutout\n- IMU 6-axis (accelerometer + gyroscope): BMI270 (I2C address 0x68)\n- Haptic feedback: DRV2605L (I2C address 0x5A) driving a LRA vibration motor\n\n## Display\n- 1.54\" IPS LCD 240x240, driver ST7789V3, SPI interface (CS, MOSI, SCK, DC pins)\n- Capacitive touch overlay: FT6336U (I2C address 0x38) on a SEPARATE I2C bus (Wire1)\n- Backlight controlled via AXP2101 ALDO2 rail\n\n## Audio\n- PDM microphone: SPM1423HM4H-B (CLK + DATA, 2 GPIOs)\n- I2S speaker amplifier: MAX98357A (BCLK, WCLK, DOUT — 3 GPIOs) driving a small 8-10mm speaker\n\n## Wireless communication\n- WiFi 802.11 b/g/n + BLE 5.0 + Bluetooth Classic A2DP (all handled by ESP32)\n- LTE-M cellular: SIM7080G module connected via UART (TX, RX) with separate 3.3V LDO regulator capable of 2A peak current, plus a 1000µF bulk capacitor\n- eSIM: MFF2 package soldered near the SIM7080G SIM interface\n- GPS/GNSS: u-blox MIA-M10Q connected via UART (TX, RX)\n\n## Antennas\n- PCB trace antenna (IFA/PIFA) for WiFi/Bluetooth with proper ground plane clearance\n- FPC antenna connector for LTE-M (external FPC antenna in watch band)\n- Ceramic chip antenna or shared with LTE for GPS L1\n\n## Power rails (managed by AXP2101)\n- DC1: 3.3V → ESP32\n- ALDO2: backlight\n- ALDO3: display + touch\n- ALDO4: LTE module enable\n- BLDO1: GPS module enable\n- BLDO2: DRV2605 enable\n- Separate LDO (e.g. TPS62743 or AP2112): LTE module main power (2A peak capable)\n\n## Physical constraints\n- Target PCB size: 38mm x 34mm (Apple Watch form factor)\n- 4-layer PCB (signal — GND — power — signal)\n- Components: 0402 passives minimum, QFN/BGA packages where needed\n- USB-C connector for charging and programming\n- 2 buttons: POWER (long press on/off) + BOOT (enter download mode)\n\n## I2C bus summary\n- Bus 0 (Wire): SDA/SCL → AXP2101 (0x34), PCF8563 (0x51), BMI270 (0x68), MAX30102 (0x57), DRV2605 (0x5A)\n- Bus 1 (Wire1): SDA1/SCL1 → FT6336U touch (0x38)\n\nGenerate: schematic, component placement suggestion, and bill of materials.",
+  "plan": "- ESP32-PICO-V3-02 SiP, AXP2101 PMIC, PCF8563 RTC, LiPo battery, USB-C for core power and charging.\n- MAX30102 HR/SpO2, BMI270 IMU, DRV2605L haptic driver with LRA motor, SPM1423HM4H-B PDM mic, MAX98357A I2S speaker amp for sensors and audio.\n- 1.54\" IPS LCD (ST7789V3) with FT6336U capacitive touch, controlled via SPI and a separate I2C bus.\n- SIM7080G LTE-M module with dedicated LDO and FPC antenna connector, MIA-M10Q GPS module with ceramic antenna, eSIM for cellular connectivity.\n- Custom 4-layer PCB (38mm x 34mm) with integrated WiFi/BT PCB antenna, 0402 passives, and QFN/BGA packages.\n- USB-C, POWER button, BOOT button for user interface and programming.",
+  "notes": [
+    "smartwatch prototype PCB",
+    "ESP32-PICO-V3-02 SiP",
+    "38mm x 34mm PCB",
+    "4-layer PCB",
+    "0402 passives minimum",
+    "QFN/BGA packages",
+    "USB-C charging",
+    "2 buttons (POWER, BOOT)"
+  ]
+}
