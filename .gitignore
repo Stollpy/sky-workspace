@@ -1,3 +1,7 @@
 node_modules
 dist
 .tsci
+.DS_Store
+
+# Worktrees Git parallèles (repos Sky — voir docs/logiciel/developpement/git-worktrees-sky.md)
+/worktrees/
