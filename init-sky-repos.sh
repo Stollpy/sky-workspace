@@ -181,9 +181,10 @@ process_repo() {
   local title="$2"
   local description="$3"
   local gitignore_fn="$4"
+  local local_dir="${5:-$name}"
 
-  local repo_path="${BASE}/${name}"
-  log_step "Dépôt : ${name}"
+  local repo_path="${BASE}/${local_dir}"
+  log_step "Dépôt : ${name} → ${local_dir}/"
 
   mkdir -p "$repo_path"
 
@@ -204,29 +205,41 @@ main() {
   header
 
   # Références : docs/logiciel/adr/adr-008, adr-00-resume, adr-009
+  # sky-docs est cloné localement sous docs/ (convention universelle, garde la compat des ~50 refs docs/logiciel/...)
   process_repo "sky-docs" \
     "Documentation Sky" \
     "Documentation centralisée de l’écosystème Sky : ADR, guides d’architecture, spécifications et suivi produit (complément au code applicatif)." \
-    gitignore_docs
+    gitignore_docs \
+    "docs"
 
   process_repo "sky-framework" \
     "SDK firmware Sky" \
     "SDK firmware partagé, distribué via ESP-IDF Component Manager (tags SemVer). Base commune pour les produits Luxia, montre et ESP32-C6." \
     gitignore_esp_idf
 
-  process_repo "luxia-firmware" \
+  process_repo "sky-luxia" \
     "Firmware Luxia" \
     "Firmware du produit Luxia ; consomme \`sky-framework\` via \`idf_component.yml\` (sans sous-modules git)." \
     gitignore_esp_idf
 
-  process_repo "sky-watch-firmware" \
+  process_repo "sky-luxia-s3" \
+    "Firmware Luxia (variante S3)" \
+    "Variante expérimentale du firmware Luxia sur ESP32-S3." \
+    gitignore_esp_idf
+
+  process_repo "sky-watch" \
     "Firmware montre Sky" \
     "Firmware de la montre connectée (ESP32-Pico, BLE + Wi‑Fi), pipeline vocale et intégration avec le hub." \
     gitignore_esp_idf
 
-  process_repo "sky-c6-firmware" \
-    "Firmware ESP32-C6 (border router)" \
-    "Firmware du coprocesseur ESP32-C6 en rôle de border router / radio Matter pour l’orchestration avec l’OPi5+." \
+  process_repo "sky-hub-antenna" \
+    "Firmware co-processeur Matter (antenna)" \
+    "Firmware du coprocesseur ESP32-C6 en rôle de border router / radio Matter pour l'orchestration avec l'OPi5+ (Phase A : WROOM-32, Phase B : C6)." \
+    gitignore_esp_idf
+
+  process_repo "sky-hub-antenna-wroom" \
+    "Firmware co-processeur Matter (variante WROOM bridge)" \
+    "Variante Wi-Fi seule du co-processeur Matter (ESP32-WROOM-32), utilisée avant l'arrivée du C6." \
     gitignore_esp_idf
 
   process_repo "sky-orbit" \

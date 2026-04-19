@@ -1,0 +1,109 @@
+{
+  "schema": "luxia-kicad-parts-v1",
+  "kicad_note": "KiCad n'importe pas ce JSON dans le schéma automatiquement. Usage: référence pour assigner Footprint + Value, ou export CSV depuis ce fichier pour coller dans la table des champs symboles.",
+  "footprint_convention": "Librairies officielles KiCad 8. Variante mains: suffixe _Pad..._HandSolder sur C et LED si besoin.",
+  "components": [
+    {
+      "ref": "C1",
+      "value": "100nF",
+      "description": "Condensateur (EN)",
+      "package": "0603",
+      "symbol": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder",
+      "qty": 1
+    },
+    {
+      "ref": "C2",
+      "value": "10µF",
+      "description": "Condensateur (LDO in)",
+      "package": "0805",
+      "symbol": "Device:C_Polarized",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+      "qty": 1,
+      "note": "Souvent MLCC céramique (non polarisé en pratique). Si tantale polarisé 0805, vérifier datasheet et footprint dédié."
+    },
+    {
+      "ref": "C3",
+      "value": "22µF",
+      "description": "Condensateur (LDO out)",
+      "package": "0805",
+      "symbol": "Device:C_Polarized",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+      "qty": 1,
+      "note": "Idem C2 — MLCC vs tantale."
+    },
+    {
+      "ref": "C4",
+      "value": "10µF",
+      "description": "Condensateur (VBAT in)",
+      "package": "0805",
+      "symbol": "Device:C_Polarized",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+      "qty": 1
+    },
+    {
+      "ref": "C5",
+      "value": "22µF",
+      "description": "Condensateur (5V out)",
+      "package": "0805",
+      "symbol": "Device:C_Polarized",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+      "qty": 1
+    },
+    {
+      "ref": "C6",
+      "value": "100nF",
+      "description": "Condensateur (ADC filter)",
+      "package": "0603",
+      "symbol": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder",
+      "qty": 1
+    },
+    {
+      "ref": "C7",
+      "value": "100nF",
+      "description": "Condensateur (ESP32 bypass)",
+      "package": "0603",
+      "symbol": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_hand_solder": "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder",
+      "qty": 1
+    },
+    {
+      "ref": "L1",
+      "value": "22µH",
+      "description": "Inductance MT3608, ≥1A Isat recommandé",
+      "package": "1210",
+      "symbol": "Device:L",
+      "footprint": "Inductor_SMD:L_1210_3225Metric",
+      "footprint_hand_solder": "Inductor_SMD:L_1210_3225Metric",
+      "qty": 1,
+      "note": "Vérifier courant nominal / Isat du bobinage choisi; adapter footprint si inducteur différent de 1210."
+    },
+    {
+      "ref": "D1",
+      "value": "SS34",
+      "description": "Diode Schottky (MT3608)",
+      "package": "SMA",
+      "symbol": "Diode:SS34",
+      "footprint": "Diode_SMD:D_SMA",
+      "qty": 1
+    },
+    {
+      "ref": "D4",
+      "value": "bleu",
+      "description": "LED status ESP",
+      "package": "0603",
+      "symbol": "Device:LED",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "footprint_hand_solder": "LED_SMD:LED_0603_1608Metric_Pad1.08x0.95mm_HandSolder",
+      "qty": 1
+    }
+  ]
+}

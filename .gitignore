@@ -5,3 +5,28 @@ dist
 
 # Worktrees Git parallèles (repos Sky — voir docs/logiciel/developpement/git-worktrees-sky.md)
 /worktrees/
+
+# Secrets locaux (deploy keys SSH, .env backups) — ne JAMAIS commit
+sky-secrets/
+
+# Fichiers locaux ignorables (doc interne, empreintes perso, dumps)
+laravelbin.html
+ssh-fingerprint.md
+
+# VS Code Local History extension (dossier .history/ avec son propre .git)
+**/.history/
+
+# Sub-repos Sky — chaque dossier est un clone indépendant (géré par init-sky-repos.sh)
+# Le workspace n'en track aucun gitlink : ils sont cohabitants locaux, pas des submodules.
+/docs/
+/sky-framework/
+/sky-luxia/
+/sky-luxia-s3/
+/sky-hub-antenna/
+/sky-hub-antenna-wroom/
+/sky-watch/
+/sky-orbit/
+/sky-hub-services/
+/sky-infra/
+/sky-infra-min/
+/sky-proto/

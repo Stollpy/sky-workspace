@@ -9,14 +9,17 @@ readonly WORKTREE_ROOT="${SKY_WORKTREE_ROOT:-${BASE}/worktrees}"
 
 # Dépôts Sky sous BASE (même liste que init-sky-repos.sh, sans sky-docs).
 readonly SKY_REPOS=(
-  luxia-firmware
-  sky-c6-firmware
+  sky-luxia
+  sky-luxia-s3
+  sky-hub-antenna
+  sky-hub-antenna-wroom
   sky-framework
   sky-hub-services
   sky-infra
+  sky-infra-min
   sky-orbit
   sky-proto
-  sky-watch-firmware
+  sky-watch
 )
 
 log() { echo "[sky-worktree] $*"; }

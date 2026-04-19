@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxia PCB — Schéma Électrique (2 PCBs)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --border: #1e293b;
+    --accent: #3b82f6;
+    --accent2: #f59e0b;
+    --red: #ef4444;
+    --green: #22c55e;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --text: #e2e8f0;
+    --dim: #64748b;
+    --wire: #60a5fa;
+    --power5v: #f97316;
+    --power3v3: #22c55e;
+    --vbat: #eab308;
+    --gnd: #475569;
+    --sat-bg: #1a1520;
+    --main-bg: #0d1a25;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    gap: 16px;
+  }
+  #header h1 { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+  #header .subtitle { font-size: 12px; color: var(--dim); font-family: 'JetBrains Mono', monospace; }
+
+  .legend { display: flex; gap: 16px; margin-left: auto; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+  #canvas-container { position: fixed; top: 48px; left: 0; right: 0; bottom: 0; overflow: hidden; cursor: grab; }
+  #canvas-container:active { cursor: grabbing; }
+  svg { position: absolute; top: 0; left: 0; }
+
+  .component { cursor: pointer; transition: filter 0.2s; }
+  .component:hover { filter: brightness(1.3); }
+  .component-body { stroke-width: 2; rx: 4; ry: 4; }
+  .pin-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--dim); }
+  .comp-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; fill: var(--text); }
+  .comp-ref { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: var(--accent); }
+  .comp-value { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--dim); }
+  .wire { stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .wire-5v { stroke: var(--power5v); }
+  .wire-3v3 { stroke: var(--power3v3); }
+  .wire-vbat { stroke: var(--vbat); }
+  .wire-gnd { stroke: var(--gnd); stroke-dasharray: 6,3; }
+  .wire-signal { stroke: var(--wire); }
+  .wire-usb { stroke: var(--purple); }
+  .junction { stroke: none; }
+  .net-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; }
+  .power-flag { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; }
+
+  #tooltip {
+    position: fixed; background: var(--surface); border: 1px solid var(--accent);
+    border-radius: 6px; padding: 10px 14px; font-size: 12px;
+    font-family: 'JetBrains Mono', monospace; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s; z-index: 200; max-width: 300px;
+    line-height: 1.6; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  #tooltip.visible { opacity: 1; }
+
+  #controls {
+    position: fixed; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 100;
+  }
+  #controls button {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 18px;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+  }
+  #controls button:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>LUXIA PCB</h1>
+  <span class="subtitle">2 PCBs : Principal + Satellite Batterie</span>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:var(--power5v)"></span> 5V</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--power3v3)"></span> 3.3V</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--vbat)"></span> VBAT</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--wire)"></span> Signal</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--gnd)"></span> GND</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span> USB</span>
+  </div>
+</div>
+
+<div id="canvas-container">
+<svg id="schematic" width="1900" height="1200" viewBox="0 0 1900 1200">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="8" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,3 L0,6 Z" fill="var(--dim)"/>
+    </marker>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a2332" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1900" height="1200" fill="url(#grid)"/>
+
+  <!-- Title block -->
+  <rect x="1520" y="1120" width="360" height="60" fill="var(--surface)" stroke="var(--border)" rx="4"/>
+  <text x="1540" y="1142" class="comp-label" font-size="14" fill="var(--accent)">LUXIA — Schéma Électrique Rev B</text>
+  <text x="1540" y="1158" class="comp-value">2 PCBs | ESP32-C6 | 28BYJ-48 | LiPo Satellite</text>
+  <text x="1540" y="1170" class="comp-value">stollpy-labs | 2026-03</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!--              PCB SATELLITE (Batterie)                              -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Satellite outline -->
+  <rect x="40" y="50" width="500" height="490" rx="12" fill="var(--sat-bg)" stroke="var(--pink)" stroke-width="2" stroke-dasharray="8,4" opacity="0.4"/>
+  <text x="60" y="80" class="section-title" fill="var(--pink)">PCB SATELLITE (Batterie)</text>
+  <text x="60" y="98" class="comp-value" fill="var(--pink)">Se débranche du principal — recharge indépendante via USB-C</text>
+
+  <!-- USB-C (J_USB) — charge only -->
+  <g class="component" data-tip="USB-C (J_USB)&#10;Charge uniquement — PAS de data&#10;VBUS: 5V vers TP4056&#10;CC1/CC2: 5.1kΩ → GND&#10;D-/D+: non connectés (NC)">
+    <rect x="60" y="140" width="120" height="160" class="component-body" fill="#1a1040" stroke="var(--purple)"/>
+    <text x="120" y="170" text-anchor="middle" class="comp-label">USB-C</text>
+    <text x="120" y="185" text-anchor="middle" class="comp-ref">J_USB</text>
+    <text x="120" y="200" text-anchor="middle" class="comp-value">Charge only</text>
+    <text x="185" y="225" class="pin-label" text-anchor="end">VBUS</text>
+    <line x1="180" y1="222" x2="210" y2="222" stroke="var(--red)" stroke-width="2"/>
+    <text x="185" y="245" class="pin-label" text-anchor="end">GND</text>
+    <line x1="180" y1="242" x2="210" y2="242" stroke="var(--gnd)" stroke-width="2"/>
+    <text x="185" y="265" class="pin-label" text-anchor="end" fill="var(--dim)">D-/D+</text>
+    <text x="185" y="280" class="pin-label" text-anchor="end" fill="var(--dim)">NC</text>
+    <text x="120" y="300" text-anchor="middle" class="comp-value">CC: 5.1kΩ→GND</text>
+  </g>
+
+  <!-- TP4056-42-ESOP8 (U3) -->
+  <g class="component" data-tip="TP4056-42-ESOP8 (U3)&#10;Chargeur LiPo CC/CV&#10;VCC: 5V USB&#10;BAT: vers cellule LiPo (4.2V)&#10;PROG: R3=2kΩ → 500mA charge&#10;CHRG: LED rouge (en charge)&#10;STDBY: LED verte (complet)&#10;Boîtier ESOP-8">
+    <rect x="260" y="140" width="150" height="190" class="component-body" fill="#1a2010" stroke="var(--vbat)"/>
+    <text x="335" y="168" text-anchor="middle" class="comp-label">TP4056</text>
+    <text x="335" y="183" text-anchor="middle" class="comp-ref">U3 — ESOP8</text>
+    <text x="335" y="198" text-anchor="middle" class="comp-value">Chargeur LiPo</text>
+    <!-- Left pins -->
+    <text x="270" y="225" class="pin-label">VCC</text>
+    <line x1="240" y1="222" x2="260" y2="222" stroke="var(--red)" stroke-width="2"/>
+    <text x="270" y="245" class="pin-label">CE</text>
+    <text x="270" y="265" class="pin-label">TEMP</text>
+    <text x="270" y="285" class="pin-label">GND</text>
+    <line x1="240" y1="282" x2="260" y2="282" stroke="var(--gnd)" stroke-width="2"/>
+    <!-- Right pins -->
+    <text x="400" y="225" class="pin-label" text-anchor="end">BAT</text>
+    <line x1="410" y1="222" x2="440" y2="222" stroke="var(--vbat)" stroke-width="2.5"/>
+    <text x="400" y="245" class="pin-label" text-anchor="end">PROG</text>
+    <text x="400" y="265" class="pin-label" text-anchor="end">CHRG</text>
+    <text x="400" y="285" class="pin-label" text-anchor="end">STDBY</text>
+    <!-- PROG resistor -->
+    <rect x="415" y="238" width="35" height="12" fill="none" stroke="var(--dim)" stroke-width="1.5" rx="2"/>
+    <text x="432" y="247" text-anchor="middle" class="comp-value" font-size="7">R3 2kΩ</text>
+    <text x="432" y="260" text-anchor="middle" class="comp-value" font-size="7">→GND</text>
+    <!-- LEDs -->
+    <circle cx="420" cy="265" r="4" fill="var(--red)" opacity="0.8"/>
+    <text x="428" y="268" class="comp-value" font-size="7">D2 CHG</text>
+    <circle cx="420" cy="285" r="4" fill="var(--green)" opacity="0.8"/>
+    <text x="428" y="288" class="comp-value" font-size="7">D3 STBY</text>
+  </g>
+
+  <!-- Wire: USB VBUS → TP4056 VCC -->
+  <polyline points="210,222 240,222" class="wire" stroke="var(--red)" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="222" y="216" class="net-label" fill="var(--red)" font-size="9">5V USB</text>
+
+  <!-- Protection DW01A + FS8205A -->
+  <g class="component" data-tip="DW01A (U6) + FS8205A (Q1)&#10;Protection batterie LiPo&#10;&#10;Sur-décharge: coupure ~2.5V&#10;Sur-charge: coupure ~4.3V&#10;Court-circuit: coupure immédiate&#10;&#10;Entre TP4056.BAT et cellule LiPo">
+    <rect x="260" y="370" width="150" height="80" class="component-body" fill="#2a1520" stroke="var(--pink)"/>
+    <text x="335" y="395" text-anchor="middle" class="comp-label" font-size="11">PROTECTION</text>
+    <text x="335" y="410" text-anchor="middle" class="comp-ref">DW01A + FS8205A</text>
+    <text x="335" y="428" text-anchor="middle" class="comp-value">OVP / UVP / SCP</text>
+    <line x1="335" y1="330" x2="335" y2="370" stroke="var(--vbat)" stroke-width="2"/>
+    <text x="345" y="355" class="net-label" fill="var(--vbat)" font-size="9">BAT_PROT</text>
+  </g>
+
+  <!-- Batterie LiPo (J_BAT) -->
+  <g class="component" data-tip="Cellule LiPo 1S (J_BAT)&#10;3.7V nominal / 4.2V pleine charge&#10;Connecteur JST-PH 2P&#10;Capacité recommandée: 1000-3000mAh">
+    <rect x="80" y="370" width="120" height="80" class="component-body" fill="#1a2010" stroke="var(--vbat)" stroke-width="2"/>
+    <!-- Battery graphic -->
+    <rect x="110" y="388" width="50" height="30" fill="none" stroke="var(--vbat)" stroke-width="2" rx="3"/>
+    <rect x="160" y="396" width="6" height="14" fill="var(--vbat)" rx="1"/>
+    <text x="135" y="408" text-anchor="middle" class="comp-value" fill="var(--vbat)" font-size="10">LiPo</text>
+    <text x="140" y="465" text-anchor="middle" class="comp-ref">J_BAT · JST-PH</text>
+    <text x="140" y="478" text-anchor="middle" class="comp-value">3.7V / 1S</text>
+  </g>
+
+  <!-- Wire: TP4056 BAT → Protection -->
+  <polyline points="440,222 470,222 470,350 335,350 335,370" class="wire wire-vbat" stroke-width="2"/>
+  <circle cx="470" cy="222" r="4" class="junction" fill="var(--vbat)"/>
+
+  <!-- Wire: Protection → Battery -->
+  <polyline points="260,410 200,410" class="wire wire-vbat" stroke-width="2"/>
+
+  <!-- Wire: BAT_PROT → output bus -->
+  <circle cx="470" cy="350" r="4" class="junction" fill="var(--vbat)"/>
+  <line x1="470" y1="350" x2="470" y2="480" stroke="var(--vbat)" stroke-width="3" opacity="0.6"/>
+
+  <!-- Magnetic connector satellite side (J_MAG) -->
+  <g class="component" data-tip="Connecteur Magnétique (J_MAG)&#10;Côté SATELLITE (mâle)&#10;Pin 1: VBAT+ (3.0V–4.2V)&#10;Pin 2: GND&#10;Pogo pins magnétiques&#10;Courant max ≥1A/pin">
+    <rect x="430" y="480" width="100" height="55" class="component-body" fill="#2a1a10" stroke="var(--accent2)" stroke-width="2.5"/>
+    <path d="M445,485 Q460,478 475,485 Q490,492 505,485" fill="none" stroke="var(--accent2)" stroke-width="2"/>
+    <text x="480" y="505" text-anchor="middle" class="comp-label" font-size="11">MAGNETIC</text>
+    <text x="480" y="518" text-anchor="middle" class="comp-ref">J_MAG (mâle)</text>
+    <text x="480" y="530" text-anchor="middle" class="comp-value">VBAT+ / GND</text>
+  </g>
+
+  <!-- Wire: VBAT bus → Mag connector -->
+  <line x1="470" y1="480" x2="470" y2="490" stroke="var(--vbat)" stroke-width="2.5"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!--      Magnetic link (dashed, between the two PCBs)                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+  <line x1="480" y1="540" x2="480" y2="620" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="10,6" opacity="0.7"/>
+  <text x="500" y="575" class="net-label" fill="var(--accent2)" font-size="12">VBAT</text>
+  <text x="500" y="592" class="comp-value" fill="var(--accent2)">magnétique</text>
+  <text x="500" y="605" class="comp-value" fill="var(--accent2)">débranchable</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!--              PCB PRINCIPAL (Luxia Main)                            -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Principal outline -->
+  <rect x="40" y="620" width="1480" height="490" rx="12" fill="var(--main-bg)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="8,4" opacity="0.3"/>
+  <text x="60" y="652" class="section-title" fill="var(--accent)">PCB PRINCIPAL (Luxia Main)</text>
+  <text x="60" y="670" class="comp-value" fill="var(--accent)">ESP32-C6 + ULN2003A + 28BYJ-48 — alimenté par le satellite</text>
+
+  <!-- Magnetic connector main side (J1) -->
+  <g class="component" data-tip="Connecteur Magnétique (J1)&#10;Côté PRINCIPAL (femelle)&#10;Pin 1: VBAT+ (entrée 3.0V–4.2V)&#10;Pin 2: GND&#10;Pogo pins magnétiques&#10;Seule source d'alimentation du PCB">
+    <rect x="430" y="620" width="100" height="55" class="component-body" fill="#2a1a10" stroke="var(--accent2)" stroke-width="2.5"/>
+    <path d="M445,630 Q460,623 475,630 Q490,637 505,630" fill="none" stroke="var(--accent2)" stroke-width="2"/>
+    <text x="480" y="650" text-anchor="middle" class="comp-label" font-size="11">MAGNETIC</text>
+    <text x="480" y="663" text-anchor="middle" class="comp-ref">J1 (femelle)</text>
+    <text x="480" y="675" text-anchor="middle" class="comp-value">→ VBAT bus</text>
+  </g>
+
+  <!-- VBAT bus on principal -->
+  <line x1="480" y1="675" x2="480" y2="920" stroke="var(--vbat)" stroke-width="3" opacity="0.5"/>
+  <circle cx="480" cy="700" r="4" class="junction" fill="var(--vbat)"/>
+  <circle cx="480" cy="780" r="4" class="junction" fill="var(--vbat)"/>
+  <circle cx="480" cy="860" r="4" class="junction" fill="var(--vbat)"/>
+  <text x="490" y="695" class="net-label" fill="var(--vbat)">VBAT BUS</text>
+
+  <!-- C4 VBAT input cap -->
+  <g class="component" data-tip="C4: 10µF&#10;Condensateur d'entrée VBAT&#10;Filtrage bus batterie">
+    <line x1="480" y1="700" x2="510" y2="700" stroke="var(--vbat)" stroke-width="1.5"/>
+    <line x1="510" y1="690" x2="510" y2="710" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="516" y1="693" x2="516" y2="707" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="516" y1="700" x2="540" y2="700" stroke="var(--gnd)" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="525" y="688" class="comp-value">C4</text>
+    <text x="525" y="718" class="comp-value">10µF</text>
+  </g>
+
+  <!-- ═══════════════════ MT3608 Boost ═══════════════════ -->
+  <g class="component" data-tip="MT3608 (U4)&#10;Boost converter&#10;VIN: VBAT (~3.7V)&#10;VOUT: 5.0V&#10;L1: 22µH inductance&#10;D1: SS34 Schottky&#10;FB: 100k/33k → 5V">
+    <rect x="80" y="730" width="160" height="150" class="component-body" fill="#1a1000" stroke="var(--power5v)"/>
+    <text x="160" y="758" text-anchor="middle" class="comp-label">MT3608</text>
+    <text x="160" y="773" text-anchor="middle" class="comp-ref">U4</text>
+    <text x="160" y="788" text-anchor="middle" class="comp-value">Boost VBAT→5V</text>
+    <text x="95" y="815" class="pin-label">VIN</text>
+    <line x1="60" y1="812" x2="80" y2="812" stroke="var(--vbat)" stroke-width="2"/>
+    <text x="95" y="835" class="pin-label">GND</text>
+    <text x="230" y="815" class="pin-label" text-anchor="end">SW</text>
+    <line x1="240" y1="812" x2="270" y2="812" stroke="var(--power5v)" stroke-width="2"/>
+    <text x="230" y="835" class="pin-label" text-anchor="end">FB</text>
+    <!-- L1 -->
+    <path d="M270,812 Q280,802 290,812 Q300,822 310,812 Q320,802 330,812 Q340,822 350,812" fill="none" stroke="var(--power5v)" stroke-width="2"/>
+    <text x="310" y="800" text-anchor="middle" class="comp-ref">L1 22µH</text>
+    <!-- D1 -->
+    <polygon points="360,812 375,802 375,822" fill="none" stroke="var(--power5v)" stroke-width="1.5"/>
+    <line x1="375" y1="802" x2="375" y2="822" stroke="var(--power5v)" stroke-width="2"/>
+    <line x1="375" y1="812" x2="410" y2="812" stroke="var(--power5v)" stroke-width="2"/>
+    <text x="368" y="798" class="comp-ref">D1 SS34</text>
+    <!-- FB divider -->
+    <text x="250" y="845" class="comp-value">R_fb 100k/33k</text>
+  </g>
+
+  <!-- Wire: VBAT → MT3608 VIN -->
+  <polyline points="480,780 60,780 60,812" class="wire wire-vbat"/>
+
+  <!-- 5V net -->
+  <text x="415" y="808" class="power-flag" fill="var(--power5v)">+5V</text>
+  <line x1="410" y1="812" x2="410" y2="920" stroke="var(--power5v)" stroke-width="2.5" opacity="0.5"/>
+  <circle cx="410" cy="812" r="4" class="junction" fill="var(--power5v)"/>
+  <circle cx="410" cy="870" r="4" class="junction" fill="var(--power5v)"/>
+
+  <!-- C5 5V cap -->
+  <g class="component" data-tip="C5: 22µF&#10;Condensateur sortie 5V">
+    <line x1="410" y1="812" x2="410" y2="835" stroke="var(--power5v)" stroke-width="1.5"/>
+    <line x1="400" y1="835" x2="420" y2="835" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="403" y1="841" x2="417" y2="841" stroke="var(--accent)" stroke-width="2"/>
+    <text x="425" y="840" class="comp-value">C5 22µF</text>
+  </g>
+
+  <!-- ═══════════════════ AMS1117 LDO ═══════════════════ -->
+  <g class="component" data-tip="AMS1117-3.3 (U5)&#10;LDO Régulateur linéaire&#10;VIN: VBAT (~3.7V)&#10;VOUT: 3.3V&#10;Dropout: 1.1V @ 1A&#10;C2: 10µF input / C3: 22µF output">
+    <rect x="80" y="930" width="160" height="100" class="component-body" fill="#0a1a0a" stroke="var(--power3v3)"/>
+    <text x="160" y="958" text-anchor="middle" class="comp-label">AMS1117</text>
+    <text x="160" y="973" text-anchor="middle" class="comp-ref">U5</text>
+    <text x="160" y="988" text-anchor="middle" class="comp-value">LDO 3.3V</text>
+    <text x="95" y="1010" class="pin-label">VIN</text>
+    <line x1="60" y1="1007" x2="80" y2="1007" stroke="var(--vbat)" stroke-width="2"/>
+    <text x="230" y="1010" class="pin-label" text-anchor="end">VOUT</text>
+    <line x1="240" y1="1007" x2="300" y2="1007" stroke="var(--power3v3)" stroke-width="2.5"/>
+    <!-- Caps -->
+    <text x="60" y="1028" class="comp-value">C2 10µF in</text>
+    <text x="250" y="1028" class="comp-value">C3 22µF out</text>
+  </g>
+
+  <!-- Wire: VBAT → LDO VIN -->
+  <polyline points="480,860 60,860 60,1007" class="wire wire-vbat"/>
+
+  <!-- 3V3 net -->
+  <text x="305" y="1002" class="power-flag" fill="var(--power3v3)">+3.3V</text>
+  <line x1="300" y1="1007" x2="300" y2="750" stroke="var(--power3v3)" stroke-width="2" opacity="0.5"/>
+  <circle cx="300" cy="1007" r="4" class="junction" fill="var(--power3v3)"/>
+
+  <!-- C7 bypass -->
+  <g class="component" data-tip="C7: 100nF&#10;Bypass ESP32-C6&#10;Placer au plus près du module">
+    <line x1="300" y1="1007" x2="300" y2="1035" stroke="var(--power3v3)" stroke-width="1"/>
+    <line x1="290" y1="1035" x2="310" y2="1035" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="293" y1="1041" x2="307" y2="1041" stroke="var(--accent)" stroke-width="2"/>
+    <text x="315" y="1040" class="comp-value">C7 100nF</text>
+  </g>
+
+  <!-- ═══════════════════ Voltage Divider ═══════════════════ -->
+  <g class="component" data-tip="Diviseur de tension (R1/R2)&#10;R1: 100kΩ (VBAT → mid)&#10;R2: 100kΩ (mid → GND)&#10;C6: 100nF filtre&#10;VBAT_SENSE = VBAT × 0.5&#10;4.2V → 2.1V (plage ADC OK)&#10;→ ESP32-C6 GPIO0 (ADC1_CH0)">
+    <rect x="560" y="680" width="90" height="90" class="component-body" fill="#101a20" stroke="var(--wire)"/>
+    <text x="605" y="703" text-anchor="middle" class="comp-label" font-size="10">VBAT</text>
+    <text x="605" y="716" text-anchor="middle" class="comp-label" font-size="10">DIVIDER</text>
+    <text x="605" y="732" text-anchor="middle" class="comp-ref">R1/R2 100k</text>
+    <text x="605" y="748" text-anchor="middle" class="comp-value">C6 100nF</text>
+    <text x="605" y="762" text-anchor="middle" class="comp-value">→ GPIO0 ADC</text>
+  </g>
+
+  <!-- Wire: VBAT → Divider -->
+  <polyline points="480,700 560,700" class="wire wire-vbat"/>
+  <!-- Wire: Divider → ESP32 GPIO0 -->
+  <line x1="650" y1="730" x2="720" y2="730" class="wire wire-signal"/>
+  <text x="680" y="724" class="net-label" fill="var(--wire)" font-size="9">VBAT_SENSE</text>
+
+  <!-- ═══════════════════ ESP32-C6 ═══════════════════ -->
+  <g class="component" data-tip="ESP32-C6-WROOM-1 (U1)&#10;MCU principal&#10;WiFi 6, BLE 5, Thread&#10;4MB Flash&#10;&#10;GPIO 0: ADC batterie&#10;GPIO 2,3,10,11: Stepper IN1-4&#10;GPIO 7: Wake button&#10;GPIO 8: Status LED&#10;GPIO 9: Boot button&#10;GPIO 16/17: UART prog (J3)&#10;GPIO 12/13: libres (USB natif)&#10;&#10;Pas d'USB sur ce PCB&#10;Prog initiale via UART (J3)&#10;puis OTA via WiFi">
+    <rect x="720" y="680" width="240" height="400" class="component-body" fill="#0d1525" stroke="var(--accent)" stroke-width="2.5"/>
+    <!-- Antenna -->
+    <path d="M810,680 L810,660 L860,660 L860,680" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+    <path d="M820,662 L820,652 L850,652 L850,662" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.3"/>
+    <text x="840" y="710" text-anchor="middle" class="comp-label" font-size="16">ESP32-C6</text>
+    <text x="840" y="728" text-anchor="middle" class="comp-ref">U1 — WROOM-1</text>
+    <text x="840" y="745" text-anchor="middle" class="comp-value">WiFi 6 · BLE 5 · Thread</text>
+
+    <!-- Power top -->
+    <text x="780" y="762" text-anchor="middle" class="pin-label" fill="var(--power3v3)">3V3</text>
+    <line x1="780" y1="765" x2="780" y2="780" stroke="var(--power3v3)" stroke-width="2"/>
+    <text x="900" y="762" text-anchor="middle" class="pin-label" fill="var(--gnd)">GND</text>
+
+    <!-- Left pins -->
+    <text x="730" y="803" class="pin-label">GPIO0</text>
+    <line x1="700" y1="800" x2="720" y2="800" stroke="var(--wire)" stroke-width="2"/>
+    <text x="685" y="803" class="pin-label" text-anchor="end" fill="var(--wire)">ADC</text>
+
+    <text x="730" y="828" class="pin-label">GPIO2</text>
+    <line x1="700" y1="825" x2="720" y2="825" stroke="var(--wire)" stroke-width="2"/>
+    <text x="685" y="828" class="pin-label" text-anchor="end" fill="var(--wire)">IN1</text>
+
+    <text x="730" y="848" class="pin-label">GPIO3</text>
+    <line x1="700" y1="845" x2="720" y2="845" stroke="var(--wire)" stroke-width="2"/>
+    <text x="685" y="848" class="pin-label" text-anchor="end" fill="var(--wire)">IN2</text>
+
+    <text x="730" y="868" class="pin-label">GPIO10</text>
+    <line x1="700" y1="865" x2="720" y2="865" stroke="var(--wire)" stroke-width="2"/>
+    <text x="685" y="868" class="pin-label" text-anchor="end" fill="var(--wire)">IN3</text>
+
+    <text x="730" y="888" class="pin-label">GPIO11</text>
+    <line x1="700" y1="885" x2="720" y2="885" stroke="var(--wire)" stroke-width="2"/>
+    <text x="685" y="888" class="pin-label" text-anchor="end" fill="var(--wire)">IN4</text>
+
+    <!-- Right pins -->
+    <text x="950" y="803" class="pin-label" text-anchor="end">EN</text>
+    <line x1="960" y1="800" x2="990" y2="800" stroke="var(--dim)" stroke-width="2"/>
+
+    <text x="950" y="828" class="pin-label" text-anchor="end">GPIO7</text>
+    <line x1="960" y1="825" x2="990" y2="825" stroke="var(--wire)" stroke-width="2"/>
+    <text x="1000" y="828" class="pin-label" fill="var(--wire)">WAKE</text>
+
+    <text x="950" y="848" class="pin-label" text-anchor="end">GPIO8</text>
+    <line x1="960" y1="845" x2="990" y2="845" stroke="var(--wire)" stroke-width="2"/>
+    <text x="1000" y="848" class="pin-label" fill="var(--wire)">LED</text>
+
+    <text x="950" y="868" class="pin-label" text-anchor="end">GPIO9</text>
+    <line x1="960" y1="865" x2="990" y2="865" stroke="var(--wire)" stroke-width="2"/>
+    <text x="1000" y="868" class="pin-label" fill="var(--wire)">BOOT</text>
+
+    <text x="950" y="910" class="pin-label" text-anchor="end">GPIO16</text>
+    <line x1="960" y1="907" x2="990" y2="907" stroke="var(--accent)" stroke-width="2"/>
+    <text x="1000" y="910" class="pin-label" fill="var(--accent)">TX</text>
+
+    <text x="950" y="930" class="pin-label" text-anchor="end">GPIO17</text>
+    <line x1="960" y1="927" x2="990" y2="927" stroke="var(--accent)" stroke-width="2"/>
+    <text x="1000" y="930" class="pin-label" fill="var(--accent)">RX</text>
+
+    <!-- Bottom GND pad -->
+    <rect x="800" y="1062" width="80" height="14" fill="var(--gnd)" opacity="0.3" rx="2"/>
+    <text x="840" y="1073" text-anchor="middle" class="pin-label" fill="var(--gnd)">GND PAD</text>
+  </g>
+
+  <!-- Wire: 3V3 → ESP32 power -->
+  <polyline points="300,750 780,750 780,780" class="wire wire-3v3"/>
+
+  <!-- Wire: VBAT_SENSE → GPIO0 -->
+  <polyline points="720,730 720,800" class="wire wire-signal"/>
+
+  <!-- ═══════════════════ Reset Circuit ═══════════════════ -->
+  <g class="component" data-tip="Circuit Reset&#10;R4: 10kΩ pull-up → 3V3&#10;C1: 100nF → GND&#10;SW1: bouton reset (EN→GND)">
+    <rect x="1010" y="785" width="100" height="45" class="component-body" fill="#1a1020" stroke="var(--dim)"/>
+    <text x="1060" y="805" text-anchor="middle" class="comp-label" font-size="10">RESET SW1</text>
+    <text x="1060" y="820" text-anchor="middle" class="comp-value">R4=10k C1=100nF</text>
+  </g>
+  <line x1="990" y1="800" x2="1010" y2="800" class="wire" stroke="var(--dim)" stroke-width="1.5"/>
+
+  <!-- Wake Button -->
+  <g class="component" data-tip="Wake Button&#10;Pull-up 10kΩ → 3V3&#10;Bouton → GND&#10;Réveille ESP du deep sleep">
+    <rect x="1010" y="835" width="100" height="25" class="component-body" fill="#1a1020" stroke="var(--wire)"/>
+    <text x="1060" y="852" text-anchor="middle" class="comp-label" font-size="9">WAKE · R=10k</text>
+  </g>
+
+  <!-- Boot Button -->
+  <g class="component" data-tip="Boot Button&#10;R5: 10kΩ pull-up → 3V3&#10;SW2: GPIO9→GND&#10;Maintenir + reset = mode flash">
+    <rect x="1010" y="855" width="100" height="25" class="component-body" fill="#1a1020" stroke="var(--dim)"/>
+    <text x="1060" y="872" text-anchor="middle" class="comp-label" font-size="9">BOOT SW2 · R5=10k</text>
+  </g>
+
+  <!-- Status LED -->
+  <g class="component" data-tip="LED Status (D4)&#10;GPIO8 → R8 (470Ω) → LED bleue → GND">
+    <circle cx="1025" cy="845" r="5" fill="var(--accent)" opacity="0.7"/>
+    <text x="1035" y="848" class="comp-value" font-size="7">D4</text>
+  </g>
+
+  <!-- ═══════════════════ UART Programming Header (J3) ═══════════════════ -->
+  <g class="component" data-tip="Header UART (J3)&#10;Programmation initiale&#10;Pin 1: 3V3&#10;Pin 2: TX (GPIO16)&#10;Pin 3: RX (GPIO17)&#10;Pin 4: GND&#10;&#10;Après premier flash → OTA&#10;via WiFi (sky_ota)">
+    <rect x="1040" y="895" width="110" height="55" class="component-body" fill="#0d2010" stroke="var(--accent)" stroke-width="2"/>
+    <text x="1095" y="915" text-anchor="middle" class="comp-label" font-size="11">UART PROG</text>
+    <text x="1095" y="930" text-anchor="middle" class="comp-ref">J3 — 1x4 Header</text>
+    <text x="1095" y="943" text-anchor="middle" class="comp-value">3V3 / TX / RX / GND</text>
+  </g>
+
+  <!-- Wires: ESP32 UART → J3 -->
+  <polyline points="990,907 1040,907" class="wire" stroke="var(--accent)" stroke-width="1.5"/>
+  <polyline points="990,927 1020,927 1020,920 1040,920" class="wire" stroke="var(--accent)" stroke-width="1.5"/>
+
+  <!-- ═══════════════════ ULN2003A ═══════════════════ -->
+  <g class="component" data-tip="ULN2003A (U2)&#10;Array Darlington 7 canaux&#10;IN1-4: depuis ESP32-C6&#10;OUT1-4: vers 28BYJ-48&#10;COM: +5V (flyback protection)&#10;Vce_sat: 0.9V typ.&#10;Ic_max: 500mA/canal">
+    <rect x="560" y="870" width="130" height="200" class="component-body" fill="#1a0a10" stroke="var(--pink)"/>
+    <text x="625" y="898" text-anchor="middle" class="comp-label" font-size="14">ULN2003A</text>
+    <text x="625" y="913" text-anchor="middle" class="comp-ref">U2</text>
+    <text x="625" y="928" text-anchor="middle" class="comp-value">Darlington</text>
+
+    <!-- Input pins -->
+    <text x="570" y="950" class="pin-label">1 IN1</text>
+    <line x1="540" y1="947" x2="560" y2="947" stroke="var(--wire)" stroke-width="2"/>
+    <text x="570" y="970" class="pin-label">2 IN2</text>
+    <line x1="540" y1="967" x2="560" y2="967" stroke="var(--wire)" stroke-width="2"/>
+    <text x="570" y="990" class="pin-label">3 IN3</text>
+    <line x1="540" y1="987" x2="560" y2="987" stroke="var(--wire)" stroke-width="2"/>
+    <text x="570" y="1010" class="pin-label">4 IN4</text>
+    <line x1="540" y1="1007" x2="560" y2="1007" stroke="var(--wire)" stroke-width="2"/>
+    <text x="570" y="1030" class="pin-label" fill="var(--dim)">5-7 NC→GND</text>
+
+    <!-- Output pins -->
+    <text x="682" y="950" class="pin-label" text-anchor="end">OUT1 16</text>
+    <line x1="690" y1="947" x2="715" y2="947" stroke="var(--pink)" stroke-width="2"/>
+    <text x="682" y="970" class="pin-label" text-anchor="end">OUT2 15</text>
+    <line x1="690" y1="967" x2="715" y2="967" stroke="var(--pink)" stroke-width="2"/>
+    <text x="682" y="990" class="pin-label" text-anchor="end">OUT3 14</text>
+    <line x1="690" y1="987" x2="715" y2="987" stroke="var(--pink)" stroke-width="2"/>
+    <text x="682" y="1010" class="pin-label" text-anchor="end">OUT4 13</text>
+    <line x1="690" y1="1007" x2="715" y2="1007" stroke="var(--pink)" stroke-width="2"/>
+
+    <!-- COM -->
+    <text x="670" y="945" class="pin-label" fill="var(--power5v)">9 COM</text>
+    <line x1="625" y1="870" x2="625" y2="860" stroke="var(--power5v)" stroke-width="2"/>
+    <text x="635" y="858" class="power-flag" fill="var(--power5v)" font-size="9">+5V</text>
+
+    <!-- GND -->
+    <text x="625" y="1065" text-anchor="middle" class="pin-label" fill="var(--gnd)">8 GND</text>
+    <line x1="625" y1="1070" x2="625" y2="1085" stroke="var(--gnd)" stroke-width="2"/>
+    <line x1="613" y1="1085" x2="637" y2="1085" stroke="var(--gnd)" stroke-width="2"/>
+    <line x1="617" y1="1090" x2="633" y2="1090" stroke="var(--gnd)" stroke-width="1.5"/>
+    <line x1="621" y1="1095" x2="629" y2="1095" stroke="var(--gnd)" stroke-width="1"/>
+  </g>
+
+  <!-- Wires: ESP32 GPIO → ULN2003 -->
+  <polyline points="700,825 540,825 540,947" class="wire wire-signal"/>
+  <polyline points="700,845 525,845 525,967 540,967" class="wire wire-signal"/>
+  <polyline points="700,865 510,865 510,987 540,987" class="wire wire-signal"/>
+  <polyline points="700,885 495,885 495,1007 540,1007" class="wire wire-signal"/>
+
+  <!-- Wire: 5V → ULN2003 COM -->
+  <polyline points="410,870 625,870" class="wire wire-5v"/>
+
+  <!-- ═══════════════════ 28BYJ-48 Motor ═══════════════════ -->
+  <g class="component" data-tip="28BYJ-48 (M1 / J2)&#10;Moteur pas à pas 5V unipolaire&#10;4096 pas/tour (half-step)&#10;Pin 1 (Red): +5V centre tap&#10;Pin 2 (Orange): Coil A → OUT1&#10;Pin 3 (Yellow): Coil C → OUT3&#10;Pin 4 (Pink): Coil B → OUT2&#10;Pin 5 (Blue): Coil D → OUT4&#10;Connecteur JST-XH 5P">
+    <rect x="740" y="920" width="160" height="160" class="component-body" fill="#1a100a" stroke="var(--accent2)" stroke-width="2"/>
+    <!-- Motor graphic -->
+    <circle cx="820" cy="970" r="30" fill="none" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <circle cx="820" cy="970" r="12" fill="var(--accent2)" opacity="0.15"/>
+    <line x1="820" y1="940" x2="820" y2="952" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <line x1="842" y1="952" x2="835" y2="960" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <line x1="842" y1="988" x2="835" y2="980" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <line x1="820" y1="1000" x2="820" y2="988" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <line x1="798" y1="988" x2="805" y2="980" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+    <line x1="798" y1="952" x2="805" y2="960" stroke="var(--accent2)" stroke-width="2" opacity="0.5"/>
+
+    <text x="820" y="935" text-anchor="middle" class="comp-label">28BYJ-48</text>
+    <text x="820" y="1010" text-anchor="middle" class="comp-ref">M1 / J2</text>
+    <text x="820" y="1025" text-anchor="middle" class="comp-value">5V · 4096 steps/rev</text>
+
+    <!-- Pins left -->
+    <text x="750" y="952" class="pin-label" fill="var(--red)">Red +5V</text>
+    <line x1="720" y1="949" x2="740" y2="949" stroke="var(--power5v)" stroke-width="2"/>
+    <text x="750" y="968" class="pin-label" fill="#f97316">Orange A</text>
+    <line x1="720" y1="965" x2="740" y2="965" stroke="var(--pink)" stroke-width="2"/>
+    <text x="750" y="984" class="pin-label" fill="#eab308">Yellow C</text>
+    <line x1="720" y1="981" x2="740" y2="981" stroke="var(--pink)" stroke-width="2"/>
+    <text x="750" y="1000" class="pin-label" fill="#ec4899">Pink B</text>
+    <line x1="720" y1="997" x2="740" y2="997" stroke="var(--pink)" stroke-width="2"/>
+    <text x="750" y="1016" class="pin-label" fill="#3b82f6">Blue D</text>
+    <line x1="720" y1="1013" x2="740" y2="1013" stroke="var(--pink)" stroke-width="2"/>
+    <text x="820" y="1070" text-anchor="middle" class="comp-value">JST-XH 5P</text>
+  </g>
+
+  <!-- Wires: ULN2003 OUT → Motor -->
+  <polyline points="715,947 720,965" class="wire" stroke="var(--pink)" stroke-width="2"/>
+  <polyline points="715,967 720,997" class="wire" stroke="var(--pink)" stroke-width="2"/>
+  <polyline points="715,987 720,981" class="wire" stroke="var(--pink)" stroke-width="2"/>
+  <polyline points="715,1007 720,1013" class="wire" stroke="var(--pink)" stroke-width="2"/>
+
+  <!-- Wire: 5V → Motor center tap -->
+  <polyline points="410,920 410,949 720,949" class="wire wire-5v"/>
+
+  <!-- ═══════════════════ Info Boxes ═══════════════════ -->
+
+  <!-- GPIO box -->
+  <rect x="1200" y="650" width="250" height="280" fill="var(--surface)" stroke="var(--border)" rx="6"/>
+  <text x="1325" y="675" text-anchor="middle" class="comp-label" fill="var(--accent)">GPIO Mapping ESP32-C6</text>
+  <line x1="1210" y1="682" x2="1440" y2="682" stroke="var(--border)"/>
+  <text x="1215" y="702" class="pin-label" fill="var(--text)">GPIO 0  — Battery ADC (ADC1_CH0)</text>
+  <text x="1215" y="720" class="pin-label" fill="var(--text)">GPIO 2  — Stepper IN1</text>
+  <text x="1215" y="738" class="pin-label" fill="var(--text)">GPIO 3  — Stepper IN2</text>
+  <text x="1215" y="756" class="pin-label" fill="var(--text)">GPIO 7  — Wake Button</text>
+  <text x="1215" y="774" class="pin-label" fill="var(--text)">GPIO 8  — Status LED</text>
+  <text x="1215" y="792" class="pin-label" fill="var(--text)">GPIO 9  — Boot Button (strap)</text>
+  <text x="1215" y="810" class="pin-label" fill="var(--text)">GPIO 10 — Stepper IN3</text>
+  <text x="1215" y="828" class="pin-label" fill="var(--text)">GPIO 11 — Stepper IN4</text>
+  <text x="1215" y="846" class="pin-label" fill="var(--text)">GPIO 16 — UART TX (J3 prog)</text>
+  <text x="1215" y="864" class="pin-label" fill="var(--text)">GPIO 17 — UART RX (J3 prog)</text>
+  <line x1="1210" y1="875" x2="1440" y2="875" stroke="var(--border)"/>
+  <text x="1215" y="892" class="pin-label" fill="var(--dim)">Libres: 1,4,5,6,12,13,14,15,</text>
+  <text x="1215" y="907" class="pin-label" fill="var(--dim)">        18,19,20,21,22,23</text>
+  <text x="1215" y="922" class="pin-label" fill="var(--dim)">GPIO 12/13: USB natif (réservé)</text>
+
+  <!-- Power budget box -->
+  <rect x="1200" y="950" width="250" height="170" fill="var(--surface)" stroke="var(--border)" rx="6"/>
+  <text x="1325" y="975" text-anchor="middle" class="comp-label" fill="var(--accent2)">Bilan Énergétique</text>
+  <line x1="1210" y1="982" x2="1440" y2="982" stroke="var(--border)"/>
+  <text x="1215" y="1002" class="pin-label" fill="var(--text)">ESP32-C6 (WiFi actif): ~80mA</text>
+  <text x="1215" y="1020" class="pin-label" fill="var(--text)">ESP32-C6 (modem sleep): ~15mA</text>
+  <text x="1215" y="1038" class="pin-label" fill="var(--text)">ESP32-C6 (deep sleep): ~7µA</text>
+  <text x="1215" y="1056" class="pin-label" fill="var(--text)">ULN2003+28BYJ-48: ~200mA</text>
+  <line x1="1210" y1="1066" x2="1440" y2="1066" stroke="var(--border)"/>
+  <text x="1215" y="1084" class="pin-label" fill="var(--power5v)">Total max: ~300mA</text>
+  <text x="1215" y="1102" class="pin-label" fill="var(--dim)">Satellite 2000mAh → ~6h actif</text>
+
+  <!-- Architecture box -->
+  <rect x="1200" y="60" width="250" height="160" fill="var(--surface)" stroke="var(--border)" rx="6"/>
+  <text x="1325" y="85" text-anchor="middle" class="comp-label" fill="var(--accent2)">Architecture 2 PCBs</text>
+  <line x1="1210" y1="92" x2="1440" y2="92" stroke="var(--border)"/>
+  <text x="1215" y="112" class="pin-label" fill="var(--pink)">SATELLITE:</text>
+  <text x="1215" y="128" class="pin-label" fill="var(--text)">USB-C + TP4056 + LiPo</text>
+  <text x="1215" y="144" class="pin-label" fill="var(--text)">+ DW01A protection</text>
+  <line x1="1210" y1="154" x2="1440" y2="154" stroke="var(--border)"/>
+  <text x="1215" y="172" class="pin-label" fill="var(--accent)">PRINCIPAL:</text>
+  <text x="1215" y="188" class="pin-label" fill="var(--text)">ESP32-C6 + ULN2003A</text>
+  <text x="1215" y="204" class="pin-label" fill="var(--text)">+ 28BYJ-48 motor</text>
+
+</svg>
+</div>
+
+<div id="tooltip"></div>
+
+<div id="controls">
+  <button onclick="zoom(1.2)" title="Zoom in">+</button>
+  <button onclick="zoom(0.8)" title="Zoom out">−</button>
+  <button onclick="resetView()" title="Reset view">⟲</button>
+</div>
+
+<script>
+const svg = document.getElementById('schematic');
+const container = document.getElementById('canvas-container');
+const tooltip = document.getElementById('tooltip');
+
+let scale = 1, panX = 0, panY = 0, isDragging = false, startX, startY;
+
+function updateTransform() {
+  svg.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+  svg.style.transformOrigin = '0 0';
+}
+
+function zoom(factor) {
+  const rect = container.getBoundingClientRect();
+  const cx = rect.width / 2, cy = rect.height / 2;
+  const oldScale = scale;
+  scale = Math.max(0.3, Math.min(4, scale * factor));
+  const ratio = scale / oldScale;
+  panX = cx - ratio * (cx - panX);
+  panY = cy - ratio * (cy - panY);
+  updateTransform();
+}
+
+function resetView() { scale = 0.85; panX = 20; panY = -10; updateTransform(); }
+
+container.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX - panX; startY = e.clientY - panY; });
+container.addEventListener('mousemove', (e) => { if (isDragging) { panX = e.clientX - startX; panY = e.clientY - startY; updateTransform(); } });
+container.addEventListener('mouseup', () => isDragging = false);
+container.addEventListener('mouseleave', () => isDragging = false);
+
+container.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const factor = e.deltaY > 0 ? 0.92 : 1.08;
+  const rect = container.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const oldScale = scale;
+  scale = Math.max(0.3, Math.min(4, scale * factor));
+  const ratio = scale / oldScale;
+  panX = mx - ratio * (mx - panX);
+  panY = my - ratio * (my - panY);
+  updateTransform();
+}, { passive: false });
+
+document.querySelectorAll('.component').forEach(el => {
+  el.addEventListener('mouseenter', (e) => {
+    const tip = el.dataset.tip;
+    if (!tip) return;
+    tooltip.innerHTML = tip.replace(/\n/g, '<br>');
+    tooltip.classList.add('visible');
+  });
+  el.addEventListener('mousemove', (e) => {
+    tooltip.style.left = Math.min(e.clientX + 15, window.innerWidth - 320) + 'px';
+    tooltip.style.top = Math.min(e.clientY + 15, window.innerHeight - 200) + 'px';
+  });
+  el.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+});
+
+resetView();
+</script>
+</body>
+</html>
