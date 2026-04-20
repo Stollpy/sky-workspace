@@ -1,6 +1,6 @@
 # Sky Hub — état courant
 
-> Rafraîchi : `2026-04-18T01:01:07Z` — via `ssh sky-hub`
+> Rafraîchi : `2026-04-19T23:51:58Z` — via `ssh sky-hub`
 > Source : `scripts/sky-hub-refresh.sh`
 
 > Le hardware réel varie (RPi4B dev / OPi5+ prod / KiwiPi alt / custom futur).
@@ -33,7 +33,7 @@ Model name:                              Cortex-A72
 ## mem
 ```
                total        used        free      shared  buff/cache   available
-Mem:           1.8Gi       390Mi       384Mi       116Mi       1.3Gi       1.4Gi
+Mem:           1.8Gi       393Mi       375Mi       117Mi       1.3Gi       1.4Gi
 Swap:          1.8Gi       302Mi       1.5Gi
 ```
 
@@ -61,7 +61,7 @@ eth0             UP             192.168.2.24/24
 ## uart
 ```
 lrwxrwxrwx 1 root root          7 Apr 14 13:39 /dev/serial0 -> ttyAMA0
-crw-rw---- 1 root dialout 204, 64 Apr 17 20:55 /dev/ttyAMA0
+crw-rw---- 1 root dialout 204, 64 Apr 19 13:15 /dev/ttyAMA0
 crw-rw---- 1 root dialout   4, 64 Apr 14 13:39 /dev/ttyS0
 aucun device série classique trouvé
 ```
