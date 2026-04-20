@@ -1,6 +1,6 @@
 # Sky Hub — état courant du développement
 
-> Rafraîchi : `2026-04-20` — sprint extraction ReverbClient + T11 permissions
+> Rafraîchi : `2026-04-20` (soir) — M10 T01 + T02 livrés, T03 next
 > Source : scan direct des 9 repos Sky + `.cursorrules` des jalons
 > Pendant : `.claude/context/sky-hub-state.md` (matériel runtime du hub)
 
@@ -11,7 +11,7 @@
 
 ## Résumé 1-ligne
 
-J1 livré à ~95 % (T11 done, reste M10 T01-T10 = metrics-service à coder), J2 à ~85 %
+J1 livré à ~95 % (T11 + M10 T01 + T02 done, reste T03-T10 metrics-service), J2 à ~85 %
 (Phase A Wi-Fi fonctionne, Luxia S3, reste M6 E2E formalisé). J3-J6 pas démarrés.
 Bloqueurs matériels : ESP32-C6 (Phase B Thread), KiwiPi Pro (benchs prod). Rien
 de critique bloqué. Déploiement hub propre via tags + deploy keys dédiées.
@@ -36,6 +36,15 @@ de critique bloqué. Déploiement hub propre via tags + deploy keys dédiées.
 - **Deploy hub** : nouveau clone `~sky/sky-hub-services/` (propre, plus le
   vieux dump `~/device-service-src/`), deploy key ed25519 dédiée
   `~/.ssh/hub-services-repo` (alias SSH `github-sky-hub-services`).
+- **M10 T01** (`sky-hub-services@a2ecc18`) : scaffold `metrics-service` crate,
+  config envy `HM_*` avec 2 channels distincts (`private-system`,
+  `private-network`), stubs modules, test CSV. Écarts documentés vs spec
+  mono-crate figée.
+- **M10 T02** (`sky-hub-services@c7e41f1`) : 3 collecteurs `/proc/*`
+  (CPU jiffies delta, RAM via `MemAvailable`, uptime). Parsers purs séparés
+  du I/O → 16 tests unit sur fixtures (macOS sans `/proc`). Validé runtime
+  RPi4B : CPU 0.75 %, RAM 18.9 %, uptime 6 j — cohérent avec `free -m` +
+  `/proc/uptime`.
 
 ## Repos — snapshot
 
@@ -66,7 +75,7 @@ de critique bloqué. Déploiement hub propre via tags + deploy keys dédiées.
 | M7 feature LLM config | ✅ | `packages/sky/llm-config/` + `LlmConfigSeeder.php` (squelette pour J4) |
 | M8 dev environment | ⚠️ partiel | tests PHPUnit scaffoldés (`tests/Feature`, `tests/Unit`), docker-compose présent |
 | M9 deployment validation | ⚠️ partiel | validé sur RPi4B actuel (services up), à rejouer sur KiwiPi |
-| **M10 hub-metrics-service** | 🟡 T11 ✅, T01-T10 à faire | **T11 DONE** (2026-04-20) : permissions granulaires `system.view`/`network.view`, widgets filtrés zéro-leak, 5 tests feature, `DashboardLayoutController` 403 si non-autorisé. **T01-T10 = scaffold + collecteurs + publisher + Dockerfile + Helm + unmock widgets + E2E** — crate stub déjà en place dans `sky-hub-services/metrics-service/`, suffit d'implémenter. Docs complets dans `docs/.../M10-hub-metrics-service/F10.1-hub-metrics-rust/T01-T11.md`. |
+| **M10 hub-metrics-service** | 🟡 T01+T02+T11 ✅, T03+T04+T05+T06+T07+T08+T09+T10 à faire | **T01 DONE** (2026-04-20) : crate scaffoldé, config envy `HM_*` (2 channels), test CSV. **T02 DONE** (2026-04-20 soir) : collecteurs `/proc/{stat,meminfo,uptime}` avec parsers purs séparés du I/O, 17 tests unit, validé runtime RPi4B (18.9 % RAM, uptime 6 jours, cross-check `free -m`). **T11 DONE** : permissions `system.view`/`network.view`, widgets filtrés zéro-leak. Prochaine étape **T03** = collecteur réseau `/sys/class/net/<iface>/statistics/{rx,tx}_bytes` + `operstate`, delta throughput Mbps. Spec complète : `docs/.../M10-.../F10.1-.../T03-collecteur-reseau-sys-class-net.md`. |
 
 ## Jalon 2 — Luxia via Matter + Wi-Fi (Mois 2-3)
 
