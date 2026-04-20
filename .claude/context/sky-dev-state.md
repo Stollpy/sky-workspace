@@ -1,6 +1,6 @@
 # Sky Hub — état courant du développement
 
-> Rafraîchi : `2026-04-17` — à la main (audit complet des repos + `git log`)
+> Rafraîchi : `2026-04-20` — sprint extraction ReverbClient + T11 permissions
 > Source : scan direct des 9 repos Sky + `.cursorrules` des jalons
 > Pendant : `.claude/context/sky-hub-state.md` (matériel runtime du hub)
 
@@ -11,20 +11,42 @@
 
 ## Résumé 1-ligne
 
-J1 livré à ~90 %, J2 livré à ~85 % (Phase A Matter+Wi-Fi bout-en-bout fonctionne,
-reste finition CRC UART, push CI sky-proto → consommateurs, M6 E2E). J3 à peine
-scaffoldé. J4-J6 non démarrés. Bloqueurs matériels : ESP32-C6 (Phase B Thread),
-KiwiPi Pro (benchs prod). Rien de critique bloqué.
+J1 livré à ~95 % (T11 done, reste M10 T01-T10 = metrics-service à coder), J2 à ~85 %
+(Phase A Wi-Fi fonctionne, Luxia S3, reste M6 E2E formalisé). J3-J6 pas démarrés.
+Bloqueurs matériels : ESP32-C6 (Phase B Thread), KiwiPi Pro (benchs prod). Rien
+de critique bloqué. Déploiement hub propre via tags + deploy keys dédiées.
+
+## Sprint 2026-04-19/20 — récap
+
+- **sky-hub-services v0.2.0** : workspace Cargo 3 crates, `ReverbClient` extrait
+  vers `sky-reverb-client` (partagé), déployé sur hub via `/opt/sky-hub/…`
+  script `~/deploy-device-service.sh`, Luxia S3 toujours pilotable = non-régression.
+- **sky-orbit T11** : permissions granulaires `system.view`/`network.view`
+  strictement admin, widgets filtrés côté serveur avant props Inertia, 5 tests
+  feature zéro-leak + fixe de 3 tests préexistants masqués par un bug APP_KEY
+  (clé AES base64 trop courte dans `phpunit.xml` depuis commit initial). Suite
+  finalement à **100/100 passants**. Role enum a 3 listes explicites :
+  `adminOnlyPermissions` (ni Member ni Guest), `guestExcludedViewPermissions`
+  (pas Guest mais Member OK), `criticalPermissions` (pas Member).
+- **sky-orbit** : canal Reverb `private-network` ajouté + 2 nouveaux widgets
+  Vue `ConnectivityWidget` + `NetworkMembersWidget` (composants prêts pour
+  consommer Echo en T07 de M10).
+- **docs** : M10 F10.1 complet (T01-T11), BOM hardware mallette Sky Hub
+  (Ryzen AI MAX+ 395 Strix Halo 128 Go pour Llama 3.3 70B local).
+- **Deploy hub** : nouveau clone `~sky/sky-hub-services/` (propre, plus le
+  vieux dump `~/device-service-src/`), deploy key ed25519 dédiée
+  `~/.ssh/hub-services-repo` (alias SSH `github-sky-hub-services`).
 
 ## Repos — snapshot
 
 | Repo | Dernier commit | État global |
 |------|----------------|-------------|
-| `sky-proto` | `a556456` claude code | F0.1/F0.2/F0.3 écrits, CI pas validée en prod |
-| `sky-framework` | `90766c4` delete log | `sky_proto` headers + `sky_serial` livrés (+ fix CRC UART récent) |
-| `sky-orbit` | `f28c091` websocket connexion hub | J1 complet + contrôle réel Window Covering + pairing |
-| `sky-hub-services` | `738c122` fix CRC UART antenna | `device-service` Rust complet (serial, state, websocket) |
-| `sky-luxia` | `5fa1c59` claude code | Matter Window Covering + Wi-Fi commissioning OK |
+| `sky-proto` | tag `v0.1.0` (2026-04-19) | F0.1/F0.2/F0.3 livrés, CI validée, deploy keys OK |
+| `sky-framework` | tag `v0.2.0` (2026-04-19) | `sky_proto` headers + `sky_serial` livrés |
+| `sky-orbit` | `652dc84` fix tests préexistants (2026-04-20) | J1 complet + T11 permissions + widgets zéro-leak + suite tests 100/100 |
+| `sky-hub-services` | tag `v0.2.0` (2026-04-20) | **workspace Cargo** : device-service + metrics-service (scaffold) + sky-reverb-client (crate partagée extraite), déployé sur hub |
+| `sky-luxia` | `5fa1c59` claude code | (fichier principal pour WROOM, secondaire aujourd'hui) |
+| `sky-luxia-s3` | commit local | **cible active** : Matter Window Covering + Wi-Fi OK sur ESP32-S3 |
 | `sky-hub-antenna` | `763aa44` c6 bridge | Phase A WROOM-32 : bridge Matter + série + Wi-Fi |
 | `sky-infra` | local | Ansible/Helm/docker/manifests/terraform scaffolds |
 | `sky-watch` | — | uniquement `README.md` + `CLAUDE.md` (scaffold) |
@@ -44,6 +66,7 @@ KiwiPi Pro (benchs prod). Rien de critique bloqué.
 | M7 feature LLM config | ✅ | `packages/sky/llm-config/` + `LlmConfigSeeder.php` (squelette pour J4) |
 | M8 dev environment | ⚠️ partiel | tests PHPUnit scaffoldés (`tests/Feature`, `tests/Unit`), docker-compose présent |
 | M9 deployment validation | ⚠️ partiel | validé sur RPi4B actuel (services up), à rejouer sur KiwiPi |
+| **M10 hub-metrics-service** | 🟡 T11 ✅, T01-T10 à faire | **T11 DONE** (2026-04-20) : permissions granulaires `system.view`/`network.view`, widgets filtrés zéro-leak, 5 tests feature, `DashboardLayoutController` 403 si non-autorisé. **T01-T10 = scaffold + collecteurs + publisher + Dockerfile + Helm + unmock widgets + E2E** — crate stub déjà en place dans `sky-hub-services/metrics-service/`, suffit d'implémenter. Docs complets dans `docs/.../M10-hub-metrics-service/F10.1-hub-metrics-rust/T01-T11.md`. |
 
 ## Jalon 2 — Luxia via Matter + Wi-Fi (Mois 2-3)
 
